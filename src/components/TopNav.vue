@@ -6,7 +6,6 @@
         </v-toolbar-items>
         <v-spacer></v-spacer>
     </v-toolbar>
-
 </template>
 
 <script>
@@ -36,11 +35,18 @@ export default {
 
 </script>
 
-<style type="sass" scoped>
+<style type="sass">
 
-    .toolbar__content * {
+    nav div.toolbar__content {
+        height: 42px!important;
+    }
+
+    .toolbar .toolbar__content .title {
+        font-size: 16px!important;
         text-transform: none;
-        font-weight: 600;
+        font-weight: 900!important;
+        font-family: 'Open Sans', 'sans-serif';
+        letter-spacing: -0.045em!important;
     }
 
 </style>
