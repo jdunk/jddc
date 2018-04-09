@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <v-app id="inspire">
+        <v-app>
             <v-toolbar dark color="primary" class="mb-3">
                 <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
                 <v-toolbar-title class="white--text">jaredduncan</v-toolbar-title>
@@ -277,9 +277,6 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('App Component mounted.')
-        },
         data() {
             return {
                 drawer: null,
