@@ -27,6 +27,7 @@ module.exports = {
   rules: {
     "indent": [ 2, 4 ],
     "max-len": [ 2, 130 ],
+    "default-case": 0,
 
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
