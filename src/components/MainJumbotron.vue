@@ -38,11 +38,11 @@ export default {
     computed: {
         portraitSize() {
             switch (this.$vuetify.breakpoint.name) {
-            case 'xs': return '300px';
-            case 'sm': return '350px';
-            case 'md': return '280px';
-            case 'lg': return '280px';
-            case 'xl': return '280px';
+                case 'xs': return '300px';
+                case 'sm': return '350px';
+                case 'md': return '280px';
+                case 'lg': return '280px';
+                case 'xl': return '280px';
             }
 
             return '280px';

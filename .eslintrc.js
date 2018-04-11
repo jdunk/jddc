@@ -25,7 +25,7 @@ module.exports = {
   },
   // add your custom rules here
   rules: {
-    "indent": [ 2, 4 ],
+    "indent": [ 2, 4, { "SwitchCase": 1 } ],
     "max-len": [ 2, 130 ],
     "default-case": 0,
 
