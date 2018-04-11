@@ -1,5 +1,5 @@
 <template>
-    <v-container fluid class="pattern-bg">
+    <v-container fluid class="pattern-bg" id="faq">
     <v-container class="px-3">
     <v-layout class="mt-5">
         <v-flex xs12 sm10 md8 offset-sm1 offset-md2>

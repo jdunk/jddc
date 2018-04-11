@@ -2,7 +2,14 @@
     <v-toolbar color="grey darken-4" dark app>
         <v-spacer></v-spacer>
         <v-toolbar-items class="headline">
-            <v-btn flat class="title" v-for="item in items" :key="item.name">{{ item.name }}</v-btn>
+            <v-btn
+                flat
+                class="title"
+                v-for="item in items" :key="item.name"
+                @click="$vuetify.goTo(item.target, goToOptions)"
+            >
+                {{ item.name }}
+            </v-btn>
         </v-toolbar-items>
         <v-spacer></v-spacer>
     </v-toolbar>
@@ -15,21 +22,26 @@ export default {
         items: [
             {
                 name: 'Top',
-                link: '#top',
+                target: '#jumbotron',
             },
             {
                 name: 'Skills',
-                link: '#',
+                target: '#skills',
             },
             {
                 name: 'Portfolio',
-                link: '#',
+                target: '#portfolio',
             },
             {
                 name: 'FAQ',
-                link: '#',
+                target: '#faq',
             },
         ],
+        goToOptions: {
+            duration: 500,
+            offset: -35,
+            easing: 'easeOutCubic',
+        },
     }),
 };
 
