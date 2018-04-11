@@ -1,5 +1,5 @@
 <template>
-    <v-toolbar color="grey darken-4" dark>
+    <v-toolbar color="grey darken-4" dark app>
         <v-spacer></v-spacer>
         <v-toolbar-items class="headline">
             <v-btn flat class="title" v-for="item in items" :key="item.name">{{ item.name }}</v-btn>
@@ -44,9 +44,9 @@ export default {
     .toolbar .toolbar__content .title {
         font-size: 16px!important;
         text-transform: none;
-        font-weight: 900!important;
+        font-weight: 600!important;
         font-family: 'Open Sans', 'sans-serif';
-        letter-spacing: -0.045em!important;
+        letter-spacing: -0.01em!important;
     }
 
 </style>

@@ -1,5 +1,7 @@
 <template>
-    <v-layout>
+    <v-container fluid class="pattern-bg">
+    <v-container class="px-3">
+    <v-layout class="mt-5">
         <v-flex xs12 sm10 md8 offset-sm1 offset-md2>
             <v-expansion-panel expand>
                 <v-expansion-panel-content v-for="item in items" :key="item.q">
@@ -13,6 +15,8 @@
             </v-expansion-panel>
         </v-flex>
     </v-layout>
+    </v-container>
+    </v-container>
 </template>
 
 <script>

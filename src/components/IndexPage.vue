@@ -2,9 +2,7 @@
     <v-app>
         <Top-nav></Top-nav>
         <Main-jumbotron/>
-        <v-container class="px-3">
-            <Faq class="mt-5"/>
-        </v-container>
+        <Faq/>
     </v-app>
 </template>
 

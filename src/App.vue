@@ -11,3 +11,17 @@ export default {
     name: 'App',
 };
 </script>
+
+<style type="sass">
+
+html {
+    font-smooth: auto;
+    -webkit-font-smoothing: auto;
+}
+
+.pattern-bg {
+    background-image: url('http://localhost:8081/img/bg.png');
+    background-repeat: repeat;
+}
+
+</style>
