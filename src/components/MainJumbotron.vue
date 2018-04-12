@@ -15,11 +15,20 @@
         <v-layout :column="$vuetify.breakpoint.smAndDown" wrap>
             <v-flex md4 align-center text-sm-center>
                 <v-card
-                    class="mx-auto elevation-1"
+                    class="mx-auto elevation-3"
                     id="headshot"
                     :width="portraitSize"
                     :height="portraitSize"
-                />
+                >
+                    <transition name="fade">
+                        <img
+                            :src="headshotSrc"
+                            :key="currHeadshotImgIndex"
+                            :width="portraitSize"
+                            :height="portraitSize"
+                        />
+                    </transition>
+                </v-card>
             </v-flex>
             <v-flex md8 text-xs-center text-md-left :pl-5="$vuetify.breakpoint.mdOnly">
                 <header class="mb-3 pt-1 pb-3">
@@ -38,18 +47,32 @@
 </template>
 
 <script>
+
 export default {
     name: 'Main-jumbotron',
     data: () => ({
         headshots: [
             '1.png',
-            '2.jpg',
+            '2.jpeg',
             '3.png',
         ],
+        currHeadshotImgIndex: 2,
     }),
     mounted() {
+        // Start Headshot src switching interval
+        setInterval(() => {
+            if (this.currHeadshotImgIndex + 1 >= this.headshots.length) {
+                this.currHeadshotImgIndex = 0;
+                return;
+            }
+
+            this.currHeadshotImgIndex++;
+        }, 5000);
     },
     computed: {
+        headshotSrc() {
+            return `http://localhost:8081/img/${this.headshots[this.currHeadshotImgIndex]}`;
+        },
         portraitSize() {
             switch (this.$vuetify.breakpoint.name) {
                 case 'xs': return '300px';
@@ -72,9 +95,18 @@ export default {
 }
 
 #headshot {
-    background-image: url('http://localhost:8081/img/4.png'), radial-gradient(farthest-corner, #fff, #eee 100%);
+    background-image: radial-gradient(farthest-corner, #fff, #eee 100%);
     background-size: cover;
     border-radius: 50%;
+    position: relative;
+}
+
+#headshot img {
+    display: block;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 header, .subheading {
