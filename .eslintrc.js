@@ -28,6 +28,7 @@ module.exports = {
     "indent": [ 2, 4, { "SwitchCase": 1 } ],
     "max-len": [ 2, 130 ],
     "default-case": 0,
+    "no-plusplus": 0,
 
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
