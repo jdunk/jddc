@@ -1,10 +1,11 @@
 <template>
     <v-container
         id="jumbotron"
-        :class="'breakpoint-' + $vuetify.breakpoint.name + ' elevation-2'"
+        :class="'breakpoint-' + $vuetify.breakpoint.name + ' elevation-3'"
         color="white"
         fluid
         :py-5="$vuetify.breakpoint.mdAndUp"
+        style="z-index: 20"
     >
     <v-container
         grid-list-xl
@@ -37,9 +38,19 @@
                 <div class="subheading grey--text text--darken-1">
                     I'm a full-stack PHP & JavaScript web app engineer with over a decade of experience
                     in San Francisco and New York.</div>
-                <v-btn large dark color="light-blue darken-2" class="mx-0 mt-5">
-                    Learn about what I do
-                </v-btn>
+                <div class="mt-5">
+                    <v-btn large dark color="light-blue darken-2" class="mx-0"
+                       @click="$vuetify.goTo('#portfolio', goToOptions)"
+                    >
+                        Check out my recent work
+                    </v-btn>
+                    <v-btn large dark color="secondary" ml-5
+                       href="https://jaredduncan.com/resume"
+                       target="_blank"
+                    >
+                        View my resume
+                    </v-btn>
+                </div>
             </v-flex>
         </v-layout>
     </v-container>
@@ -71,7 +82,8 @@ export default {
     },
     computed: {
         headshotSrc() {
-            return `http://localhost:8081/img/${this.headshots[this.currHeadshotImgIndex]}`;
+            // eslint-disable-next-line global-require, import/no-dynamic-require
+            return require(`../assets/img/${this.headshots[this.currHeadshotImgIndex]}`);
         },
         portraitSize() {
             switch (this.$vuetify.breakpoint.name) {
@@ -84,6 +96,11 @@ export default {
 
             return '280px';
         },
+    },
+    goToOptions: {
+        duration: 500,
+        offset: -35,
+        easing: 'easeOutCubic',
     },
 };
 </script>

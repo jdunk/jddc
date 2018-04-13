@@ -1,5 +1,5 @@
 <template>
-    <v-toolbar color="grey darken-4" dark app>
+    <v-toolbar color="grey darken-4" dark app style="z-index: 21">
         <v-spacer></v-spacer>
         <v-toolbar-items class="headline">
             <v-btn
