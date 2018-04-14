@@ -62,6 +62,15 @@ module.exports = {
         }
       },
       {
+        test: /\/img\/responsive\/.*\.(png|jpe?g)$/,
+        loader: 'responsive-loader',
+        options: {
+          limit: 10000,
+          name: utils.assetsPath('img/[name].[hash:7]-[width].[ext]'),
+          sizes: [400, 800, 1200, 1600],
+        }
+      },
+      {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
         loader: 'url-loader',
         options: {

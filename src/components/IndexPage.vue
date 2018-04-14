@@ -1,7 +1,8 @@
 <template>
     <v-app>
-        <Top-nav></Top-nav>
+        <Top-nav/>
         <Main-jumbotron/>
+        <Portfolio/>
         <Faq/>
     </v-app>
 </template>
@@ -10,20 +11,16 @@
 
 import TopNav from '@/components/TopNav';
 import MainJumbotron from '@/components/MainJumbotron';
+import Portfolio from '@/components/Portfolio';
 import Faq from '@/components/Faq';
 
 export default {
     components: {
         TopNav,
         MainJumbotron,
+        Portfolio,
         Faq,
     },
-    data: () => ({
-    }),
 };
 
 </script>
-
-<style scoped>
-
-</style>
