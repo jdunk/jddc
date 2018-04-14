@@ -23,10 +23,11 @@
                 >
                     <transition name="fade">
                         <img
-                            :src="headshotSrc"
-                            :key="currHeadshotImgIndex"
+                            :src="headshotPath"
+                            :data-headshot-path="headshotPath"
                             :width="portraitSize"
                             :height="portraitSize"
+                            :key="currHeadshotImgIndex"
                         />
                     </transition>
                 </v-card>
@@ -59,14 +60,20 @@
 
 <script>
 
+/* eslint-disable */
+
+const headshots = [
+    require('@/assets/img/1.png'),
+    require('@/assets/img/2.jpeg'),
+    require('@/assets/img/3.png'),
+];
+
+/* eslint-enable */
+
 export default {
     name: 'Main-jumbotron',
     data: () => ({
-        headshots: [
-            '1.png',
-            '2.jpeg',
-            '3.png',
-        ],
+        headshots,
         currHeadshotImgIndex: 2,
     }),
     mounted() {
@@ -81,9 +88,8 @@ export default {
         }, 5000);
     },
     computed: {
-        headshotSrc() {
-            // eslint-disable-next-line global-require, import/no-dynamic-require
-            return require(`../assets/img/${this.headshots[this.currHeadshotImgIndex]}`);
+        headshotPath() {
+            return this.headshots[this.currHeadshotImgIndex];
         },
         portraitSize() {
             switch (this.$vuetify.breakpoint.name) {
