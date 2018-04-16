@@ -1,28 +1,35 @@
 <template>
-    <v-container fluid class="pattern-bg" id="faq">
-    <v-container class="px-3">
-    <v-layout class="mt-5">
-        <v-flex xs12 sm10 md8 offset-sm1 offset-md2>
-            <v-expansion-panel expand>
-                <v-expansion-panel-content v-for="item in items" :key="item.q">
-                    <div slot="header">{{ item.q }}</div>
-                    <v-card>
-                        <v-card-text class="grey lighten-3">
-                            {{ item.a }}
-                        </v-card-text>
-                    </v-card>
-                </v-expansion-panel-content>
-            </v-expansion-panel>
-        </v-flex>
-    </v-layout>
-    </v-container>
+    <v-container fluid class="pattern-bg" id="faq" py-5>
+        <Section-header>Let me answer all your questions...</Section-header>
+
+        <v-container class="px-3 mt-3">
+            <v-layout>
+                <v-flex xs12 sm10 md8 offset-sm1 offset-md2>
+                    <v-expansion-panel expand>
+                        <v-expansion-panel-content v-for="item in items" :key="item.q">
+                            <div slot="header">{{ item.q }}</div>
+                            <v-card>
+                                <v-card-text class="grey lighten-3">
+                                    {{ item.a }}
+                                </v-card-text>
+                            </v-card>
+                        </v-expansion-panel-content>
+                    </v-expansion-panel>
+                </v-flex>
+            </v-layout>
+        </v-container>
     </v-container>
 </template>
 
 <script>
 
+import SectionHeader from './SectionHeader';
+
 export default {
     name: 'Faq',
+    components: {
+        SectionHeader,
+    },
     data: () => ({
         items: [
             {
