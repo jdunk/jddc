@@ -1,13 +1,14 @@
 <template>
     <v-container
         id="jumbotron"
+        fluid
         :class="'breakpoint-' + $vuetify.breakpoint.name + ' elevation-3'"
         color="white"
-        fluid
         :py-5="$vuetify.breakpoint.mdAndUp"
         style="z-index: 20"
     >
     <v-container
+        :fluid="$vuetify.breakpoint.lgAndDown"
         grid-list-xl
         pt-5
         mt-3
