@@ -82,27 +82,27 @@
                                                             style="max-width: 100%; max-height: 100%"
                                                         />
                                                     </template>
-                                                    <template v-if="i == 0 && j == 3">
+                                                    <template v-else-if="i == 0 && j == 3">
                                                         <img
-                                                            src="/static/full-screen.png"
+                                                            src="/static/test/full-screen.png"
                                                             style="max-width: 100%; max-height: 100%"
                                                         />
                                                     </template>
-                                                    <template v-if="i == 0 && j == 4">
+                                                    <template v-else-if="i == 0 && j == 4">
                                                         <img
-                                                            src="/static/tall-and-skinny.png"
+                                                            src="/static/test/tall-and-skinny.png"
                                                             style="max-width: 100%; max-height: 100%"
                                                         />
                                                     </template>
-                                                    <template v-if="i == 0 && j == 5">
+                                                    <template v-else-if="i == 0 && j == 5">
                                                         <img
-                                                            src="/static/tall-and-skinny.png"
+                                                            src="/static/test/tall-and-skinny-2.png"
                                                             style="max-width: 100%; max-height: 100%"
                                                         />
                                                     </template>
-                                                    <template v-if="i == 0 && j == 6">
+                                                    <template v-else-if="i == 0 && j == 6">
                                                         <img
-                                                            src="/static/wide-and-short.png"
+                                                            src="/static/test/wide-and-short.png"
                                                             style="max-width: 100%; max-height: 100%"
                                                         />
                                                     </template>
