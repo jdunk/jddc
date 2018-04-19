@@ -29,6 +29,8 @@ module.exports = {
     "max-len": [ 2, 130 ],
     "default-case": 0,
     "no-plusplus": 0,
+    "import/no-unresolved": 0, // "Casing of Vue does not match the underlying filesystem"
+    "import/no-extraneous-dependencies": 0, // "'Vue' should be listed in the project's dependencies. Run 'npm i -S Vue' to add it"
 
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
