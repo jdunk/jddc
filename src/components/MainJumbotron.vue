@@ -2,7 +2,8 @@
     <v-container
         id="jumbotron"
         fluid
-        :class="'breakpoint-' + $vuetify.breakpoint.name + ' elevation-3'"
+        class="elevation-3"
+        :class="'breakpoint-' + $vuetify.breakpoint.name"
         color="white"
         :py-5="$vuetify.breakpoint.mdAndUp"
         style="z-index: 20"

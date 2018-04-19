@@ -6,12 +6,12 @@
                 class="white--text"
                 height="200"
                 v-bind="imgAttrs"
-                @click="$emit('portfolio-item-clicked')"
+                @click.stop="$emit('portfolio-item-clicked')"
         >
         </v-card-media>
         <v-card-title class="pb-2 d-block">
             <div class="title"
-                @click="$emit('portfolio-item-clicked')"
+                @click.stop="$emit('portfolio-item-clicked')"
             >
                 {{ title }}
             </div>
@@ -23,16 +23,19 @@
             <v-btn
                 flat
                 class="blue--text text--darken-1"
-                @click="$emit('portfolio-item-clicked')"
+                @click.stop="$emit('portfolio-item-clicked')"
             >
                 Gallery
             </v-btn>
             <v-btn
-                    v-if="links && links.github"
-                    :href="links.github"
-                    target="_blank"
-                    flat
-                    class="blue--text text--darken-1">View on GitHub</v-btn>
+                v-if="links && links.github"
+                :href="links.github"
+                target="_blank"
+                flat
+                class="blue--text text--darken-1"
+            >
+                View on GitHub
+            </v-btn>
         </v-card-actions>
     </v-card>
 </template>
