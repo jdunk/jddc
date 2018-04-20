@@ -20,7 +20,7 @@ html {
 }
 
 .pattern-bg {
-    background-image: url('http://localhost:8081/img/bg.png');
+    background-image: url('/static/bg.png');
     background-repeat: repeat;
 }
 
