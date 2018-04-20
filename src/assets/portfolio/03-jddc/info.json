@@ -1,0 +1,7 @@
+{
+  "title": "jaredduncan.com",
+  "description": "That's right, this very site you're browsing right now I hand-coded with Vue, Vuetify, and Webpack.",
+  "links": {
+    "github": "https://github.com/jdunk/jddc"
+  }
+}

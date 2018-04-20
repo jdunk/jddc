@@ -5,7 +5,7 @@
         <v-card-media
                 class="white--text"
                 height="200"
-                v-bind="imgAttrs"
+                v-bind="images[0]"
                 @click.stop="$emit('portfolio-item-clicked')"
         >
         </v-card-media>
@@ -47,9 +47,12 @@ export default {
     props: [
         'title',
         'description',
-        'imgAttrs',
+        'images',
         'links',
     ],
+    mounted() {
+        console.log({ images: this.images });
+    },
 };
 
 </script>

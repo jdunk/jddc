@@ -1,11 +1,11 @@
 <template>
     <div
         class="image-viewer-infobox grey darken-2 grey--text text--lighten-4"
-        :class="showExpanded ? '' : 'collapsed'"
+        :class="[showExpanded ? '' : 'collapsed', cssClass]"
     >
         <div class="image-viewer-infobox-content">
-            <v-layout align-center>
-                <v-btn
+            <v-layout :align-center="rightPosition">
+                <v-btn v-if="rightPosition"
                     flat dark class="expand-collapse-btn my-0 py-0 pl-0 pr-0 ml-0 mr-0"
                     @click.stop="toggleDisplay"
                 >
@@ -13,7 +13,7 @@
                 </v-btn>
                 <h2 class="title">{{ title }}</h2>
             </v-layout>
-            <v-divider dark class="my-2"/>
+            <v-divider dark :class="{ 'my-2': rightPosition, 'my-1': bottomPosition }"/>
             <div class="main">
                 {{ caption }}
             </div>
@@ -25,14 +25,32 @@
 
 export default {
     name: 'Image-gallery-info-box',
-    props: [
-        'title',
-        'caption',
-    ],
+    props: {
+        position: {
+            type: String,
+        },
+        title: {
+            type: String,
+        },
+        caption: {
+            type: String,
+        },
+        'css-class': {
+            type: String,
+        },
+    },
     data() {
         return {
             showExpanded: true,
         };
+    },
+    computed: {
+        bottomPosition() {
+            return this.position === 'bottom';
+        },
+        rightPosition() {
+            return !this.bottomPosition;
+        },
     },
     methods: {
         toggleDisplay() {
@@ -46,12 +64,32 @@ export default {
 
 <style lang="scss">
 
-.image-viewer-infobox {
+.small-layout #gallery-tabs > .tabs__bar {
+    height: 0;
+}
+
+.small-layout.image-viewer-infobox {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 8px 10px;
+    height: 100px;
+
+    .title {
+        font-size: 16px!important;
+    }
+
+    .main {
+        font-size: 13px;
+    }
+}
+
+.full-layout.image-viewer-infobox {
     position: absolute;
     top: calc(96px + 1.5%);
     height: calc(100% - 2*1.5% - 96px);
     border-radius: 4px 0 0 4px;
-    transition: all .5s ease;
+    transition: right .6s ease, width .6s ease;
     right: 0;
     width: calc(120px + 15vw);
 

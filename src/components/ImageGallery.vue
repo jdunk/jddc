@@ -9,15 +9,19 @@
         transition="scale-transition"
     >
         <v-card
+            :class="layoutCssClass"
             color="grey darken-4"
             height="100%"
         >
             <v-btn
-                fab fixed bottom right
-                dark
-                color="cyan darken-2"
+                fab fixed right
+                top
+                :dark="smallLayout"
+                :color="fullLayout ? 'grey lighten-1' : 'grey'"
+                small
                 @click.stop="show = false"
                 class="elevation-10"
+                :style="fullLayout ? 'top: 28px' : ''"
             >
                 <v-icon>close</v-icon>
             </v-btn>
@@ -37,7 +41,7 @@
                 </v-tab>
                 <v-tabs-items v-model="activeGalleryId" id="gallery-tabs-items">
                     <v-tab-item
-                        v-for="(item, i) in items"
+                        v-for="(gallery, i) in items"
                         :key="i"
                         :id="'tab-' + i"
                     >
@@ -51,23 +55,25 @@
                             >
                                 <v-tabs-slider color="blue"></v-tabs-slider>
                                 <v-tab
-                                    v-for="j in 10"
+                                    v-for="(image, j) in gallery.images"
                                     :key="j"
                                     :href="'#tab-' + i + '-' + j"
                                 >
-                                    {{ j }}
+                                    {{ j + 1 }}
                                 </v-tab>
                                 <v-tabs-items
                                     v-model="activeImageId[i]"
                                     id="image-tabs-items"
                                     class="image-viewer-container grey darken-4"
                                 >
-                                    <div class="image-viewer-main" :class="infoBoxRightExpanded ? '' : 'full'">
+                                    <div class="image-viewer-main" :class="fullLayout && !infoBoxRightExpanded ? 'full' : ''">
                                         <v-tab-item
-                                            v-for="j in 10"
+                                            v-for="(image, j) in gallery.images"
                                             :key="j"
                                             :id="'tab-' + i + '-' + j"
-                                            width="calc(85% - 135px)"
+                                            :width="fullLayout ?
+                                                (infoBoxRightExpanded ? 'calc(85% - 135px)' : 'calc(100% - 37px)')
+                                                : 'calc(100% - 16px)'"
                                         >
                                             <v-container fluid style="height: calc(100vh - 96px)">
                                                 <v-layout
@@ -76,41 +82,10 @@
                                                     align-center
                                                     style="max-height: calc(100%)"
                                                 >
-                                                    <template v-if="i == 0 && j == 2">
-                                                        <img
-                                                            src="/static/laracasts-downloader-screenshot.png"
-                                                            style="max-width: 100%; max-height: 100%"
-                                                        />
-                                                    </template>
-                                                    <template v-else-if="i == 0 && j == 3">
-                                                        <img
-                                                            src="/static/test/full-screen.png"
-                                                            style="max-width: 100%; max-height: 100%"
-                                                        />
-                                                    </template>
-                                                    <template v-else-if="i == 0 && j == 4">
-                                                        <img
-                                                            src="/static/test/tall-and-skinny.png"
-                                                            style="max-width: 100%; max-height: 100%"
-                                                        />
-                                                    </template>
-                                                    <template v-else-if="i == 0 && j == 5">
-                                                        <img
-                                                            src="/static/test/tall-and-skinny-2.png"
-                                                            style="max-width: 100%; max-height: 100%"
-                                                        />
-                                                    </template>
-                                                    <template v-else-if="i == 0 && j == 6">
-                                                        <img
-                                                            src="/static/test/wide-and-short.png"
-                                                            style="max-width: 100%; max-height: 100%"
-                                                        />
-                                                    </template>
-                                                    <v-card v-else height="300px" width="500px" color="blue"
-                                                        class="elevation-8"
-                                                    >
-                                                        <v-card-text>Gallery {{ i+1 }} Image {{ j }} here</v-card-text>
-                                                    </v-card>
+                                                    <img
+                                                        :srcset="image.srcSet"
+                                                        style="max-width: 100%; max-height: 100%"
+                                                    />
                                                 </v-layout>
                                             </v-container>
                                         </v-tab-item>
@@ -126,6 +101,8 @@
 
         <Image-gallery-info-box
             @toggled="infoBoxToggled"
+            :position="smallLayout ? 'bottom' : 'right'"
+            :css-class="layoutCssClass"
             :title="currTitle"
             :caption="currCaption"
         />
@@ -161,6 +138,15 @@ export default {
         };
     },
     computed: {
+        smallLayout() {
+            return this.$vuetify.breakpoint.width < 1200;
+        },
+        fullLayout() {
+            return !this.smallLayout;
+        },
+        layoutCssClass() {
+            return this.smallLayout ? 'small-layout' : 'full-layout';
+        },
         currTitle() {
             return this.activeGallery.title;
         },
@@ -193,13 +179,14 @@ export default {
             // eslint-disable-next-line prefer-const
             let galleryIdx = this.activeGalleryIndex;
 
-            if (this.activeImageIndex === 1) {
+            // eslint-disable-next-line
+            if (this.activeImageIndex == 0) {
                 /* eslint-disable no-underscore-dangle */
                 const _this = this;
-                _this.$set(_this.activeImageId, galleryIdx, null);
+                _this.$set(_this.activeImageId, galleryIdx, `tab-${galleryIdx}-1`);
 
                 Vue.nextTick(() => {
-                    _this.$set(_this.activeImageId, galleryIdx, `tab-${galleryIdx}-1`);
+                    _this.$set(_this.activeImageId, galleryIdx, `tab-${galleryIdx}-0`);
                 });
                 /* eslint-enable no-underscore-dangle */
             }
@@ -216,14 +203,46 @@ export default {
              * These 2 lines are necessary for a vuetify bug where <v-tabs-slider> doesn't
              * initially appear when the tabs are rendered inside a hidden container.
              */
-            this.$set(this.activeImageId, galleryIdx, null);
             this.$set(this.activeImageId, galleryIdx, `tab-${galleryIdx}-1`);
+            this.$set(this.activeImageId, galleryIdx, `tab-${galleryIdx}-0`);
         },
         nextImage() {
-            this.$set(this.activeImageId, this.activeGalleryIndex, `${this.activeGalleryId}-${(this.activeImageIndex - 0) + 1}`);
+            let nextImageIndex = (this.activeImageIndex - 0) + 1;
+
+            if (nextImageIndex >= this.activeGallery.images.length) {
+                return this.nextGallery();
+            }
+
+            this.$set(this.activeImageId, this.activeGalleryIndex, `${this.activeGalleryId}-${nextImageIndex}`);
         },
         prevImage() {
-            this.$set(this.activeImageId, this.activeGalleryIndex, `${this.activeGalleryId}-${this.activeImageIndex - 1}`);
+            let prevImageIndex = this.activeImageIndex - 1;
+
+            if (prevImageIndex < 0) {
+                return this.prevGallery();
+            }
+
+            this.$set(this.activeImageId, this.activeGalleryIndex, `${this.activeGalleryId}-${prevImageIndex}`);
+        },
+        nextGallery() {
+            let nextGalleryIndex = (this.activeGalleryIndex - 0) + 1;
+
+            if (nextGalleryIndex >= this.items.length) {
+                return;
+            }
+
+            this.$set(this.activeImageId, nextGalleryIndex, `tab-${nextGalleryIndex}-0`);
+            this.activeGalleryId = `tab-${nextGalleryIndex}`;
+        },
+        prevGallery() {
+            let prevGalleryIndex = this.activeGalleryIndex - 1;
+
+            if (prevGalleryIndex < 0) {
+                return;
+            }
+
+            this.$set(this.activeImageId, prevGalleryIndex, `tab-${prevGalleryIndex}-0`);
+            this.activeGalleryId = `tab-${prevGalleryIndex}`;
         },
         infoBoxToggled(isExpanded) {
             this.infoBoxRightExpanded = isExpanded;
@@ -269,14 +288,27 @@ export default {
 }
 
 .image-viewer-main {
-    max-width: calc(85vw - 135px);
-    max-height: calc(100vh - 96px);
     overflow: hidden;
-    transition: all .5s ease;
 }
 
-.image-viewer-main.full {
-    max-width: calc(100% - 37px);
+.full-layout .image-viewer-main {
+    max-width: calc(85vw - 135px);
+    max-height: calc(100vh - 96px);
+    transition: max-width .6s ease;
+
+    &.full {
+        max-width: calc(100% - 37px);
+    }
+}
+
+.small-layout #image-tabs {
+    .tabs__wrapper, .tabs__container {
+        height: 37px;
+    }
+}
+.small-layout .image-viewer-main {
+    max-width: calc(100% - 16px);
+    max-height: calc(100vh - 48px - 100px);
 }
 
 </style>
