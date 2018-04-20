@@ -54,7 +54,10 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/,
-        exclude: /\/img\/responsive\//,
+        exclude: [
+            path.resolve(resolve('src'), 'assets/portfolio/'),
+            path.resolve(resolve('src'), 'assets/img/responsive/'),
+        ],
         loader: 'url-loader',
         options: {
           limit: 10000,
@@ -62,7 +65,11 @@ module.exports = {
         }
       },
       {
-        test: /\/img\/responsive\/.*\.(png|jpe?g)$/,
+        test: /\.(png|jpe?g)$/,
+        include: [
+            path.resolve(resolve('src'), 'assets/portfolio/'),
+            path.resolve(resolve('src'), 'assets/img/responsive/'),
+        ],
         loader: 'responsive-loader',
         options: {
           limit: 10000,
