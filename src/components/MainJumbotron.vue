@@ -10,9 +10,12 @@
     >
     <v-container
         :fluid="$vuetify.breakpoint.lgAndDown"
-        grid-list-xl
-        pt-5
-        mt-3
+        :grid-list-xl="$vuetify.breakpoint.smAndUp"
+        :pt-5="$vuetify.breakpoint.smAndUp"
+        :pt-4="$vuetify.breakpoint.xsOnly"
+        px-0
+        :mt-3="$vuetify.breakpoint.smAndUp"
+        :mt-4="$vuetify.breakpoint.xsOnly"
     >
         <!--:mt-4="$vuetify.breakpoint.smAndDown"-->
         <v-layout :column="$vuetify.breakpoint.smAndDown" wrap>
@@ -35,13 +38,19 @@
                 </v-card>
             </v-flex>
             <v-flex md8 text-xs-center text-md-left :pl-5="$vuetify.breakpoint.mdOnly">
-                <header class="mb-3 pt-1 pb-3">
+                <header
+                    class="mb-3"
+                    :class="$vuetify.breakpoint.xsOnly ? 'pt-4 pb-0' : 'pb-3'"
+                >
                     Hi. I'm <strong>Jared Duncan</strong>.
                 </header>
                 <div class="subheading grey--text text--darken-1">
                     I'm a full-stack PHP & JavaScript web app engineer with over a decade of experience
-                    in San Francisco and New York.</div>
-                <div class="mt-5">
+                    in San Francisco and New York.
+                </div>
+                <div
+                    :class="$vuetify.breakpoint.smAndDown ? 'mt-4 pt-2' : 'mt-5'"
+                >
                     <v-btn large dark color="light-blue darken-2" class="mx-0"
                        @click="$vuetify.goTo('#portfolio', goToOptions)"
                     >

@@ -47,18 +47,23 @@ export default {
 
 </script>
 
-<style type="sass">
+<style lang="scss">
 
-    nav div.toolbar__content {
-        height: 42px!important;
-    }
+nav div.toolbar__content {
+    height: 42px!important;
+    margin-left: 0!important;
 
-    .toolbar .toolbar__content .title {
-        font-size: 16px!important;
-        text-transform: none;
-        font-weight: 600!important;
-        font-family: 'Open Sans', 'sans-serif';
-        letter-spacing: -0.01em!important;
+    & .spacer {
+        margin: 0!important;
     }
+}
+
+.toolbar .toolbar__content .title {
+    font-size: 16px!important;
+    text-transform: none;
+    font-weight: 600!important;
+    font-family: 'Open Sans', 'sans-serif';
+    letter-spacing: -0.01em!important;
+}
 
 </style>
