@@ -75,7 +75,11 @@
                                                 (infoBoxRightExpanded ? 'calc(85% - 135px)' : 'calc(100% - 37px)')
                                                 : 'calc(100% - 16px)'"
                                         >
-                                            <v-container fluid style="height: calc(100vh - 96px)">
+                                            <v-container
+                                                fluid
+                                                style="height: calc(100vh - 96px)"
+                                                :style="smallLayout ? 'padding: 12px 0 0 0' : ''"
+                                            >
                                                 <v-layout
                                                     fill-height
                                                     justify-center
@@ -307,7 +311,7 @@ export default {
     }
 }
 .small-layout .image-viewer-main {
-    max-width: calc(100% - 16px);
+    max-width: 100%;
     max-height: calc(100vh - 48px - 100px);
 }
 
