@@ -79,6 +79,8 @@
                                                 fluid
                                                 style="height: calc(100vh - 96px)"
                                                 :style="smallLayout ? 'padding: 12px 0 0 0' : ''"
+                                                @touchend.stop="imgTouchEnd"
+                                                @touchstart.stop="imgTouchStart"
                                             >
                                                 <v-layout
                                                     fill-height
@@ -209,6 +211,18 @@ export default {
              */
             this.$set(this.activeImageId, galleryIdx, `tab-${galleryIdx}-1`);
             this.$set(this.activeImageId, galleryIdx, `tab-${galleryIdx}-0`);
+        },
+        imgTouchStart($event) {
+            this.lastTouchStartX = $event.changedTouches[0].clientX;
+        },
+        imgTouchEnd($event) {
+            let currX = $event.changedTouches[0].clientX;
+
+            if (currX > this.lastTouchStartX) {
+                this.prevImage();
+            } else {
+                this.nextImage();
+            }
         },
         nextImage() {
             let nextImageIndex = (this.activeImageIndex - 0) + 1;
