@@ -116,7 +116,7 @@
 <script>
 
 // eslint-disable-next-line
-import Vue from 'Vue';
+import Vue from 'vue';
 import ImageGalleryInfoBox from './ImageGalleryInfoBox';
 
 export default {
