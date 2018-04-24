@@ -122,7 +122,7 @@ export default {
 };
 </script>
 
-<style type="scss" scoped>
+<style lang="scss" scoped>
 
 #jumbotron {
     background-color: #fff;
