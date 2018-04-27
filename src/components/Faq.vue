@@ -10,7 +10,7 @@
         <v-container
             :fluid="$vuetify.breakpoint.xs"
             class="mt-3"
-            :class="$vuetify.breakpoint.xs ? 'px-0' : 'px-3'"
+            :class="$vuetify.breakpoint.xs ? 'px-2' : 'px-3'"
         >
             <v-layout>
                 <v-flex
@@ -69,9 +69,9 @@
 
                                 <p>
                                 And last but certainly not least, I've been able to accomplish all of this within the
-                                    last few months by deeply caring about my <strong>personal health</strong>. I've been exercising daily,
-                                have been highly mindful of my diet, and under no circumstances have I
-                                been sacrificing any sleep. I started swimming regularly again for the first time in
+                                last few months by deeply caring about my <strong>personal health</strong>.
+                                I've been exercising daily, have been highly mindful of my diet, and under no circumstances
+                                have I been sacrificing any sleep. I started swimming regularly again for the first time in
                                 over a decade. And I'm making sure that I regularly challenge my brain in completely new
                                 ways (to keep it in the best possible shape) by doing things such as learning
                                 Tagalog and some Japanese, and some crazy-difficult Chopin songs on the piano.
@@ -206,8 +206,6 @@ export default {
         FaqItem,
     },
     data: () => ({
-        items: [
-        ],
     }),
 };
 

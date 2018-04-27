@@ -25,12 +25,12 @@ export default {
                 target: '#jumbotron',
             },
             {
-                name: 'Skills',
-                target: '#skills',
-            },
-            {
                 name: 'Portfolio',
                 target: '#portfolio',
+            },
+            {
+                name: 'Skills',
+                target: '#skills-section',
             },
             {
                 name: 'FAQ',
