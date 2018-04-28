@@ -4,6 +4,7 @@
         <Main-jumbotron/>
         <Portfolio/>
         <Skills-section/>
+        <Testimonials-section/>
         <Faq/>
     </v-app>
 </template>
@@ -12,8 +13,9 @@
 
 import TopNav from '@/components/TopNav';
 import MainJumbotron from '@/components/MainJumbotron';
-import SkillsSection from '@/components/SkillsSection';
 import Portfolio from '@/components/Portfolio';
+import SkillsSection from '@/components/SkillsSection';
+import TestimonialsSection from '@/components/TestimonialsSection';
 import Faq from '@/components/Faq';
 
 export default {
@@ -21,6 +23,7 @@ export default {
         TopNav,
         MainJumbotron,
         SkillsSection,
+        TestimonialsSection,
         Portfolio,
         Faq,
     },

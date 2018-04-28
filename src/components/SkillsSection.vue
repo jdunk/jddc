@@ -16,9 +16,11 @@
             <v-layout>
                 <v-flex
                         xs12
-                        md10
-                        offset-md1
-                        style="text-align: center; max-width: 1000px"
+                        lg10
+                        offset-lg1
+                        xl8
+                        offset-xl2
+                        style="text-align: center;"
                 >
                     <a href="/static/skills-chart-fullsize.png" target="_blank">
                         <img

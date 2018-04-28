@@ -69,7 +69,10 @@
 
                                 <p>
                                 And last but certainly not least, I've been able to accomplish all of this within the
-                                last few months by deeply caring about my <strong>personal health</strong>.
+                                last few months by deeply caring about my <strong>personal health:</strong>
+                                </p>
+
+                                <p>
                                 I've been exercising daily, have been highly mindful of my diet, and under no circumstances
                                 have I been sacrificing any sleep. I started swimming regularly again for the first time in
                                 over a decade. And I'm making sure that I regularly challenge my brain in completely new
@@ -95,7 +98,7 @@
                             </template>
                             <template slot="answer">
                                 <p>
-                                It depends. First off, I'd be happy to relocate anywhere for a training
+                                It depends. First off, I'd be happy to relocate anywhere in the world for a training
                                 period of 3 months or so.
                                 </p>
 
