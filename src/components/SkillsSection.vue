@@ -22,7 +22,7 @@
 
             <p>
                 My hope is that the chart below can serve as a useful measuring stick for <strong>how good a fit</strong>
-                (or not) a given project would be for me.
+                a given project would be for me.
             </p>
         </Section-description>
         <v-container
