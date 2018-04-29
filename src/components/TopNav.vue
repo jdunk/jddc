@@ -39,7 +39,7 @@ export default {
         ],
         goToOptions: {
             duration: 500,
-            offset: -35,
+            offset: -25,
             easing: 'easeOutCubic',
         },
     }),

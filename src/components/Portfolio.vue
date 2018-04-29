@@ -4,7 +4,7 @@
         <v-container
             :fluid="$vuetify.breakpoint.lgAndDown"
             grid-list-xl
-            mt-3
+            mt-3 pt-3
         >
             <v-layout row wrap justify-space-around>
                 <v-flex

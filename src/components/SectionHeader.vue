@@ -2,7 +2,7 @@
     <v-layout
         row
         justify-center
-        :py-4="$vuetify.breakpoint.smAndUp"
+        :py-3="$vuetify.breakpoint.smAndUp"
     >
         <h2 class="headline grey--text text--darken-3 text-xs-center px-3">
             <slot></slot>

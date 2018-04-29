@@ -9,7 +9,7 @@
         <Section-header>Let me answer all your questions...</Section-header>
         <v-container
             :fluid="$vuetify.breakpoint.xs"
-            class="mt-3"
+            class="mt-4"
             :class="$vuetify.breakpoint.xs ? 'px-2' : 'px-3'"
         >
             <v-layout>
@@ -99,7 +99,7 @@
                             <template slot="answer">
                                 <p>
                                 It depends. First off, I'd be happy to relocate anywhere in the world for a training
-                                period of 3 months or so.
+                                period of up to 3 months or so.
                                 </p>
 
                                 <p>
