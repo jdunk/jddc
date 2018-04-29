@@ -11,7 +11,10 @@
                 >
                     <v-icon>chevron_{{ showExpanded ? 'right' : 'left' }}</v-icon>
                 </v-btn>
-                <h2 class="title">{{ title }}</h2>
+                <v-tooltip bottom :max-width="smallLayout ? 'auto' : 350" content-class="blue-tooltip">
+                    <h2 class="title" slot="activator">{{ title }}</h2>
+                    <span>{{ caption }}</span>
+                </v-tooltip>
             </v-layout>
             <v-divider dark :class="{ 'my-2': rightPosition, 'my-1': bottomPosition }"/>
             <div class="main">
@@ -138,6 +141,12 @@ export default {
             left: -10px;
         }
     }
+}
+
+.blue-tooltip {
+    background-color: #1970b6;
+    opacity: 0.95!important;
+    font-size: 1em;
 }
 
 </style>
