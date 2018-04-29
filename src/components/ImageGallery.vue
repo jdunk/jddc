@@ -112,6 +112,18 @@
             :title="currTitle"
             :caption="currCaption"
         />
+
+        <v-snackbar
+            :color="'grey darken-' + (smallLayout ? '4' : '3')"
+            :timeout="11000"
+            v-model="showSnackbar"
+            v-if="$vuetify.breakpoint.mdAndUp"
+        >
+            Use <code>&larr;</code> and <code>&rarr;</code> to navigate
+            <v-btn fab small dark flat @click.native="showSnackbar = false">
+                <v-icon>close</v-icon>
+            </v-btn>
+        </v-snackbar>
     </v-dialog>
 </template>
 
@@ -138,6 +150,7 @@ export default {
     data() {
         return {
             show: this.showInit,
+            showSnackbar: true,
             activeGalleryId: null,
             activeImageId: Array(this.items.length).fill(null),
             infoBoxRightExpanded: true,

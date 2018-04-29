@@ -12,7 +12,7 @@ export default {
 };
 </script>
 
-<style type="sass">
+<style lang="scss">
 
 html {
     font-smooth: auto;
@@ -29,6 +29,12 @@ html {
 }
 .fade-enter, .fade-leave-to {
     opacity: 0;
+}
+
+code {
+  font-family: "Lucida Grande";
+  margin-left: 0.5em;
+  margin-right: 0.5em;
 }
 
 </style>
