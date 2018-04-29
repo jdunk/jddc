@@ -63,7 +63,7 @@ export default {
                 quote: `You're like super awesome; I look up to you [...] but that's the truth, I'm inspired by how you
                         are passionate with what you do. You make me want to do better [...] Know that there is someone
                         who looks up to you and someday wants to be as good as you!`,
-                by: 'Rosselle Mabunga, Junior Engineer at iVolunteer',
+                by: 'Rosselle, Junior Engineer at iVolunteer',
             },
             {
                 quote: `I always find it fascinating that I can throw seeds of thought at you, and then sit back, and
