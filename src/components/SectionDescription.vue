@@ -24,7 +24,7 @@ export default {
 .card {
     max-width: 900px;
     font-family: Verdana, "Open Sans", 'sans-serif';
-    font-size: 1.08em;
+    font-size: 1em;
     line-height: 170%;
 }
 

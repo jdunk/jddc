@@ -34,27 +34,23 @@ module.exports = {
     "prefer-const": 0,
     "one-var": 0,
     "consistent-return": 0,
+    "no-use-before-define": [2, 'nofunc'],
+    "brace-style": ["error", "stroustrup"],
+    "no-unused-expressions": ["error", { "allowShortCircuit": true }],
+    "no-param-reassign": 0,
 
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
       js: 'never',
       vue: 'never'
     }],
-    // disallow reassignment of function parameters
-    // disallow parameter object manipulation except for specific exclusions
-    'no-param-reassign': ['error', {
-      props: true,
-      ignorePropertyModificationsFor: [
-        'state', // for vuex state
-        'acc', // for reduce accumulators
-        'e' // for e.returnvalue
-      ]
-    }],
     // allow optionalDependencies
     'import/no-extraneous-dependencies': ['error', {
       optionalDependencies: ['test/unit/index.js']
     }],
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    // allow console during development
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
   }
 }

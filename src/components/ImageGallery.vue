@@ -233,7 +233,8 @@ export default {
 
             if (currX > this.lastTouchStartX) {
                 this.prevImage();
-            } else {
+            }
+            else {
                 this.nextImage();
             }
         },

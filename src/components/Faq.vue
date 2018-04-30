@@ -32,53 +32,52 @@
                                 What have you been up to lately?
                             </template>
                             <template slot="answer">
-                                <p>
-                                Quite a bit, actually. The overarching theme of my latest projects is "picking up and
-                                solidifying new skills," particularly the most interesting, fun, and useful ones which
-                                will pay dividends for years to come. Thus, I now have a very serviceable proficiency with
-                                Vue, Vuetify, Webpack, ES6, and Chrome Extension authoring. I've learned how to create
-                                custom Amazon Alexa skills (using AWS Lambda) and beautiful &amp; fast charts with
-                                ChartJS.
-                                </p>
+                                <div class="p">
+                                    Quite a bit, actually. The overarching theme of my latest projects is "picking up and
+                                    solidifying new skills," particularly the most interesting, fun, and useful ones which
+                                    will pay dividends for years to come. Thus, I now have a very serviceable proficiency with
+                                    Vue, Vuetify, Webpack, ES6, and Chrome Extension authoring. I've learned how to create
+                                    custom Amazon Alexa skills (using AWS Lambda) and beautiful &amp; fast charts with
+                                    ChartJS.
+                                </div>
 
-                                <p>
-                                In January, I devoured Investopedia in a week and taught myself everything one needs
-                                to know to be a proficient day-trader (and
-                                <a href="https://github.com/jdunk/trading-bot" target="_blank">built a Laravel app to automate
-                                cryptocurrency day-trading</a> on Binance).
-                                </p>
+                                <div class="p">
+                                    In January, I devoured Investopedia in a week and taught myself everything one needs
+                                    to know to be a proficient day-trader (and
+                                    <a href="https://github.com/jdunk/trading-bot" target="_blank">built a Laravel app to
+                                    automate cryptocurrency day-trading</a> on Binance).
+                                </div>
 
-                                <p>
-                                I've kept abreast of the latest versions of PHP and Laravel. I've attended Laravel
-                                meetups in San Francisco (where I once spoke directly with Taylor Otwell)...<br>
+                                <div class="p">
+                                    I've kept abreast of the latest versions of PHP and Laravel. I've attended Laravel
+                                    meetups in San Francisco (where I once spoke directly with Taylor Otwell)...<br>
 
                                     <div class="img-center">
                                         <a href="https://youtu.be/DuImStVSxEo?t=56m40s" target="_blank">
                                             <img :src="require('@/assets/img/taylor-youtube-screenshot.png')"/>
                                         </a>
                                     </div>
-                                </p>
+                                </div>
 
-                                <p>
-                                ...and I've even
-                                presented at one in Manila:
+                                <div class="p">
+                                    ...and I've even presented at one in Manila:
                                     <div class="img-center">
                                         <img :src="require('@/assets/img/clean-n-clear-code-video-screenshot.png')"/>
                                     </div>
-                                </p>
+                                </div>
 
-                                <p>
-                                And last but certainly not least, I've been able to accomplish all of this within the
-                                last few months by deeply caring about my <strong>personal health:</strong>
-                                </p>
+                                <div class="p">
+                                    And last but certainly not least, I've been able to accomplish all of this within the
+                                    last few months by caring deeply about my <strong>personal health:</strong>
+                                </div>
 
-                                <p>
-                                I've been exercising daily, have been highly mindful of my diet, and under no circumstances
-                                have I been sacrificing any sleep. I started swimming regularly again for the first time in
-                                over a decade. And I'm making sure that I regularly challenge my brain in completely new
-                                ways (to keep it in the best possible shape) by doing things such as learning
-                                Tagalog and some Japanese, and some crazy-difficult Chopin songs on the piano.
-                                </p>
+                                <div class="p">
+                                    I've been exercising daily, have been highly mindful of my diet, and under no circumstances
+                                    have I been sacrificing any sleep. I started swimming regularly again for the first time in
+                                    over a decade. And I'm making sure that I regularly challenge my brain in completely new
+                                    ways (to keep it in the best possible shape) by doing things such as learning
+                                    Tagalog and some Japanese, and some crazy-difficult Chopin songs on the piano.
+                                </div>
                             </template>
                         </Faq-item>
                         <Faq-item>
@@ -103,7 +102,7 @@
                                 </p>
 
                                 <p>
-                                Now, if we're talking long-term (onsite-only indefinitely), then we'd have to rule out
+                                Now, if we're talking long-term (i.e. onsite-only indefinitely), then we'd have to rule out
                                 SF and NYC (been there, done that, and while these areas have many nice things, they
                                 also have many cultural and systemic problems that aren't worth the extra pay IMO, no
                                 offense to anyone). I'd love the chance to learn what it's like to live in the Midwest
@@ -216,7 +215,11 @@ export default {
 
 <style lang="scss" scoped>
 
-p:last-child {
+div.p {
+    margin-bottom: 16px;
+}
+
+p:last-child, div.p:last-of-type {
     margin-bottom: 0;
 }
 

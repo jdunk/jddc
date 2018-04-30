@@ -14,8 +14,9 @@
             </p>
 
             <p>
-                I drew the following chart to illustrate both the <strong>skill level</strong> and <strong>interest level</strong> I have
-                in each given technology in the hopes that this would serve as a useful measuring stick for
+                I drew the following chart to illustrate both the <strong>skill level</strong> and
+                <strong>interest level</strong> I have in each given technology in the hopes that this
+                would serve as a useful measuring stick for
                 <strong>how good a fit</strong> a given project would be for me.
             </p>
         </Section-description>

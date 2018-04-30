@@ -9,6 +9,7 @@
             <v-layout row wrap justify-space-around>
                 <v-flex
                     v-for="(portfolioItem, i) in portfolioItems"
+                    v-if="portfolioItem.images.length"
                     :key="portfolioItem.images[0].src"
                     xs12
                     :sm6="$vuetify.breakpoint.width >= 760"
@@ -34,7 +35,7 @@
 
 <script>
 
-import { cloneDeep, get, has, includes, merge } from 'lodash';
+import { cloneDeep, has, includes, merge } from 'lodash';
 import SectionHeader from './SectionHeader';
 import PortfolioItem from './PortfolioItem';
 import ImageGallery from './ImageGallery';
@@ -126,9 +127,7 @@ r.keys().forEach((key) => {
             return;
         }
 
-        mergedImgData.overrides[minOrMaxWidth].sort((a, b) => {
-            return a[minOrMaxWidth] - b[minOrMaxWidth];
-        });
+        mergedImgData.overrides[minOrMaxWidth].sort((a, b) => a[minOrMaxWidth] - b[minOrMaxWidth]);
     });
 });
 

@@ -56,7 +56,7 @@ export default {
                 by: 'Donovan Hughes',
             },
             {
-                quote: `You're good honestly and I believe you deserve 50usd per hr.`,
+                quote: 'You\'re good honestly and I believe you deserve 50usd per hr.',
                 by: 'Joe Palala, engineering colleague at iVolunteer',
             },
             {
