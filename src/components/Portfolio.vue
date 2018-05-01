@@ -121,7 +121,7 @@ portfolioItems = [
 ];
 
 */
-r = require.context('../assets/portfolio/', true, /\.(jpe?|png)$/);
+r = require.context('../assets/portfolio/', true, /\.(jpe?|png|mp4)$/);
 // console.log(r.keys());
 
 r.keys().forEach((key) => {
@@ -138,7 +138,18 @@ r.keys().forEach((key) => {
     let thisImgData = {},
         imgData,
         imgSlug,
+        imgReqd,
         matches;
+
+    imgReqd = r(key);
+
+    if (typeof imgReqd === 'string') {
+        // Morph into data structure to match responsive-loader's output
+        imgReqd = {
+            src: imgReqd,
+            ext: filename.split('.').reverse()[0],
+        };
+    }
 
     matches = filename.match(/^(.*)--(min|max)-([0-9]+)w[.-]/);
 
@@ -151,7 +162,7 @@ r.keys().forEach((key) => {
         merge(thisImgData, {
             overrides: {
                 [minOrMaxWidth]: [{
-                    ...r(key),
+                    ...imgReqd,
                     [minOrMaxWidth]: width,
                 }],
             },
@@ -159,7 +170,7 @@ r.keys().forEach((key) => {
     }
     else {
         imgSlug = filename.substring(0, filename.lastIndexOf('.'));
-        merge(thisImgData, r(key));
+        merge(thisImgData, imgReqd);
     }
 
     // We now have the img slug. Append it if not added yet.

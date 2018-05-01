@@ -88,7 +88,15 @@
                                                     align-center
                                                     style="max-height: calc(100%)"
                                                 >
+                                                    <video
+                                                        v-if="image.ext === 'mp4'"
+                                                        autoplay loop controls
+                                                        width="100%"
+                                                        style="max-width: 100%; max-height: 100%"
+                                                        :src="image.src"
+                                                    ></video>
                                                     <img
+                                                        v-else
                                                         :srcset="image.srcSet"
                                                         style="max-width: 100%; max-height: 100%"
                                                     />
@@ -240,12 +248,13 @@ export default {
             this.lastTouchStartX = $event.changedTouches[0].clientX;
         },
         imgTouchEnd($event) {
-            let currX = $event.changedTouches[0].clientX;
+            let currX = $event.changedTouches[0].clientX,
+                deltaX = currX - this.lastTouchStartX;
 
-            if (currX > this.lastTouchStartX) {
+            if (deltaX >= 25) {
                 this.prevImage();
             }
-            else {
+            else if (deltaX <= -25) {
                 this.nextImage();
             }
         },
@@ -295,7 +304,7 @@ export default {
             this.infoBoxRightExpanded = isExpanded;
         },
         handleKeyEvent($event) {
-            if ($event.type === 'keydown') {
+            if ($event && $event.type === 'keydown') {
                 this.showSnackbar = false;
             }
         },
