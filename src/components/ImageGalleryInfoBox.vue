@@ -5,21 +5,75 @@
     >
         <div class="image-viewer-infobox-content">
             <v-layout :align-center="rightPosition">
-                <v-btn v-if="rightPosition"
+                <v-btn v-show="rightPosition"
                     flat dark class="expand-collapse-btn my-0 py-0 pl-0 pr-0 ml-0 mr-0"
                     @click.stop="toggleDisplay"
                 >
                     <v-icon>chevron_{{ showExpanded ? 'right' : 'left' }}</v-icon>
                 </v-btn>
-                <v-tooltip bottom :max-width="smallLayout ? 'auto' : 350" content-class="blue-tooltip">
+                <v-tooltip bottom :max-width="bottomPosition ? 'auto' : 350" content-class="blue-tooltip">
                     <h2 class="title" slot="activator">{{ title }}</h2>
-                    <span>{{ caption }}</span>
+                    <span>{{ description }}</span>
                 </v-tooltip>
             </v-layout>
-            <v-divider dark :class="{ 'my-2': rightPosition, 'my-1': bottomPosition }"/>
-            <div class="main">
-                {{ caption }}
-            </div>
+            <v-layout
+                v-show="caption || hasLinks"
+                :column="rightPosition"
+                class="main img-caption elevation-1"
+                :py-3="rightPosition"
+                :pl-4="rightPosition"
+                :pr-3="rightPosition"
+                mt-2
+                :py-2="bottomPosition"
+                :px-3="bottomPosition"
+            >
+                <v-flex
+                    v-show="!!caption"
+                >
+                    {{ caption }}
+                </v-flex>
+                <v-flex
+                    v-if="bottomPosition && hasLinks"
+                >
+                    <v-layout wrap>
+                        <div
+                            v-for="(link, i) in links"
+                            :key="i"
+                        >
+                            <v-btn
+                                small
+                                :dark="!i"
+                                :color="i === 0 ? 'blue darken-1' : 'grey lighten-2'"
+                                target="_blank"
+                                :href="link.href"
+                                :class="rightPosition ? 'ml-0 mr-3' : ''"
+                            >{{ link.text }}</v-btn>
+                        </div>
+                    </v-layout>
+                </v-flex>
+            </v-layout>
+
+            <v-flex
+                v-if="rightPosition"
+                mt-3
+                class="main"
+            >
+                <v-layout wrap>
+                    <div
+                        v-for="(link, i) in links"
+                        :key="i"
+                    >
+                        <v-btn
+                            small
+                            :dark="!i"
+                            :color="i === 0 ? 'blue darken-1' : 'grey lighten-2'"
+                            target="_blank"
+                            :href="link.href"
+                            class="ml-0 mr-3"
+                        >{{ link.text }}</v-btn>
+                    </div>
+                </v-layout>
+            </v-flex>
         </div>
     </div>
 </template>
@@ -35,8 +89,14 @@ export default {
         title: {
             type: String,
         },
+        description: {
+            type: String,
+        },
         caption: {
             type: String,
+        },
+        links: {
+            type: Array,
         },
         'css-class': {
             type: String,
@@ -53,6 +113,9 @@ export default {
         },
         rightPosition() {
             return !this.bottomPosition;
+        },
+        hasLinks() {
+            return this.links && this.links.length;
         },
     },
     methods: {
@@ -85,6 +148,10 @@ export default {
     .main {
         font-size: 13px;
     }
+
+    .img-caption {
+        border-radius: 3px;
+    }
 }
 
 .full-layout.image-viewer-infobox {
@@ -99,7 +166,7 @@ export default {
     &.collapsed {
         right: calc(-120px - 15vw + 38px);
 
-        .divider, .main {
+        .main {
             opacity: 0;
         }
 
@@ -140,6 +207,10 @@ export default {
             position: relative;
             left: -10px;
         }
+
+        .img-caption {
+            border-radius: 20px 4px/100% 6px;
+        }
     }
 }
 
@@ -147,6 +218,12 @@ export default {
     background-color: #1970b6;
     opacity: 0.95!important;
     font-size: 1em;
+}
+
+.small-layout, .full-layout {
+    .img-caption {
+        background-color: #888;
+    }
 }
 
 </style>

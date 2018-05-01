@@ -4,8 +4,8 @@
         fullscreen
         lazy
         @keydown.esc="show = false"
-        @keydown.left="prevImage"
-        @keydown.right="nextImage"
+        @keydown.left="prevImage($event)"
+        @keydown.right="nextImage($event)"
         transition="scale-transition"
     >
         <v-card
@@ -110,7 +110,9 @@
             :position="smallLayout ? 'bottom' : 'right'"
             :css-class="layoutCssClass"
             :title="currTitle"
+            :description="currDescription"
             :caption="currCaption"
+            :links="currLinks"
         />
 
         <v-snackbar
@@ -169,11 +171,20 @@ export default {
         currTitle() {
             return this.activeGallery.title;
         },
-        currCaption() {
+        currDescription() {
             return this.activeGallery.description;
+        },
+        currCaption() {
+            return this.activeImage && this.activeImage.caption;
+        },
+        currLinks() {
+            return this.activeImage && this.activeImage.links;
         },
         activeGallery() {
             return this.items[this.activeGalleryIndex];
+        },
+        activeImage() {
+            return this.activeGallery.images[this.activeImageIndex];
         },
         activeGalleryIndex() {
             if (!this.activeGalleryId) {
@@ -238,7 +249,9 @@ export default {
                 this.nextImage();
             }
         },
-        nextImage() {
+        nextImage($event) {
+            this.handleKeyEvent($event);
+
             let nextImageIndex = (this.activeImageIndex - 0) + 1;
 
             if (nextImageIndex >= this.activeGallery.images.length) {
@@ -247,7 +260,9 @@ export default {
 
             this.$set(this.activeImageId, this.activeGalleryIndex, `${this.activeGalleryId}-${nextImageIndex}`);
         },
-        prevImage() {
+        prevImage($event) {
+            this.handleKeyEvent($event);
+
             let prevImageIndex = this.activeImageIndex - 1;
 
             if (prevImageIndex < 0) {
@@ -278,6 +293,11 @@ export default {
         },
         infoBoxToggled(isExpanded) {
             this.infoBoxRightExpanded = isExpanded;
+        },
+        handleKeyEvent($event) {
+            if ($event.type === 'keydown') {
+                this.showSnackbar = false;
+            }
         },
     },
     mounted() {
