@@ -63,7 +63,64 @@ r.keys().forEach((key) => {
     portfolioLookup[slug] = portfolioItems.length - 1;
 });
 
-// Step 2: Import all image files
+/*
+
+Step 2: Import all image files
+
+End result after this step is a data structure like this:
+
+portfolioItems = [
+  {
+    title: 'Gallery One',
+    description: 'Description for gallery one here...',
+    links: {
+      github: 'https://github.com/...',
+    },
+    imageSlugsOrdered: [ '01-first-img', '02-second-img', ...],
+    imageData: {
+      '01-first-img': {
+        src: '/static/01-first-img.png',
+        overrides: {
+          max_width: [ // these are sorted by max_width (ascending)
+            {
+              max_width: 800,
+              src: '/static/01-first-img--max-600w.png',
+            },
+            {
+              max_width: 1100,
+              src: '/static/01-first-img--max-600w.png',
+            },
+            ...
+          ],
+          min_width: [ // these are sorted by min_width (ascending)
+            {
+              min_width: 400,
+              src: '/static/01-first-img--min-600w.png',
+            },
+            {
+              min_width: 600,
+              src: '/static/01-first-img--min-600w.png',
+            },
+            ...
+          ],
+        },
+      },
+      '02-second-img': {
+        src: '/static/02-second-img.png',
+        overrides: {
+            ...
+        },
+      },
+      ... // more images in the gallery
+    },
+  },
+  { // more galleries
+    title: 'Gallery Two',
+    ...
+  }
+];
+
+*/
 r = require.context('../assets/portfolio/', true, /\.(jpe?|png)$/);
 // console.log(r.keys());
 
@@ -135,7 +192,7 @@ function portfolioItemByKey(slug) {
     return portfolioItems[portfolioLookup[slug]];
 }
 
-console.log({ portfolioItems, portfolioLookup });
+console.log({ portfolioItems: cloneDeep(portfolioItems), portfolioLookup });
 
 export default {
     name: 'Portfolio',
