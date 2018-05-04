@@ -41,16 +41,16 @@
                         slot="activator"
                         class="img-caption truncatable"
                     >
-                        {{ caption }}
+                        {{ captionInnerText }}
                     </div>
 
                     <v-card
                         class="grey--text text--lighten-4"
-                        style="background-color: #888"
+                        style="background-color: #666;"
                     >
-                        <v-card-text>
-                            {{ caption }}
-                        </v-card-text>
+                        <v-card-text
+                            v-html="caption"
+                        />
                     </v-card>
                 </v-bottom-sheet>
 
@@ -139,9 +139,8 @@
             >
                 <v-flex
                     v-if="caption"
-                >
-                    {{ caption }}
-                </v-flex>
+                    v-html="caption"
+                />
             </v-layout>
 
             <v-flex
@@ -201,6 +200,12 @@ export default {
         };
     },
     computed: {
+        captionInnerText() {
+            let el = document.createElement('div');
+            el.innerHTML = this.caption;
+
+            return el.innerText;
+        },
         bottomPosition() {
             return this.position === 'bottom';
         },
@@ -370,6 +375,10 @@ export default {
     .img-caption {
         background-color: #888;
     }
+}
+
+.p:not(:last-of-type) {
+    margin-bottom: 20px;
 }
 
 </style>

@@ -44,9 +44,9 @@ let portfolioItems = [];
 let portfolioLookup = {};
 let r;
 
-r = require.context('../assets/portfolio/', true, /\/info\.json$/);
+r = require.context('../assets/portfolio/', true, /\/info\.js$/);
 
-// Step 1: Import all info.json files
+// Step 1: Import all info.js files
 r.keys().forEach((key) => {
     let pieces = key.split('/').slice(1), // Discard the './' prefix
         slug = pieces[0];

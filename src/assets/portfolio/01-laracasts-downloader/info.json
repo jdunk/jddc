@@ -1,7 +1,0 @@
-{
-  "title": "Laracasts Downloader",
-  "description": "A Chrome Extension I wrote to mass-download invaluable Laracasts screencast videos.",
-  "links": {
-    "github": "https://github.com/jdunk/laracasts-downloader"
-  }
-}
