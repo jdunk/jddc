@@ -37,4 +37,9 @@ code {
   margin-right: 0.5em;
 }
 
+/* Oddly absent from vuetify css?? */
+.align-stretch {
+  align-items: stretch;
+}
+
 </style>
