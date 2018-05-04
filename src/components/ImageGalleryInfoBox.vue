@@ -1,24 +1,134 @@
 <template>
-    <div
-        class="image-viewer-infobox grey darken-2 grey--text text--lighten-4"
-        :class="[showExpanded ? '' : 'collapsed', cssClass]"
+    <v-flex
+        class="image-viewer-info-box grey darken-2 grey--text text--lighten-4"
+        :class="cssClasses"
+        v-if="rightPosition || caption || hasLinks"
     >
-        <div class="image-viewer-infobox-content">
-            <v-layout :align-center="rightPosition">
-                <v-btn v-show="rightPosition"
-                    flat dark class="expand-collapse-btn my-0 py-0 pl-0 pr-0 ml-0 mr-0"
+        <v-flex
+            class="image-viewer-info-box-content fill-height"
+        >
+            <v-layout
+                :fill-height="bottomPosition"
+                :align-stretch="bottomPosition"
+                :align-center="rightPosition"
+            >
+                <v-btn
+                    v-if="rightPosition"
+                    flat dark
+                    class="expand-collapse-btn my-0 py-0 pl-0 pr-0 ml-0 mr-0"
                     @click.stop="toggleDisplay"
                 >
                     <v-icon>chevron_{{ showExpanded ? 'right' : 'left' }}</v-icon>
                 </v-btn>
-                <v-tooltip bottom :max-width="bottomPosition ? 'auto' : 350" content-class="blue-tooltip">
+
+                <v-tooltip
+                    v-if="rightPosition"
+                    bottom
+                    :max-width="350"
+                    content-class="blue-tooltip"
+                >
                     <h2 class="title" slot="activator">{{ title }}</h2>
                     <span>{{ description }}</span>
                 </v-tooltip>
+
+                <!-- Bottom position: caption and links -->
+                <v-bottom-sheet v-model="showCaptionSheet" hide-overlay
+                    v-if="bottomPosition && caption"
+                    style="min-width: 0; background-color: #888; cursor: pointer;"
+                    class="flex d-flex align-center lr-padding"
+                >
+                    <div
+                        slot="activator"
+                        class="img-caption truncatable"
+                    >
+                        {{ caption }}
+                    </div>
+
+                    <v-card
+                        class="grey--text text--lighten-4"
+                        style="background-color: #888"
+                    >
+                        <v-card-text>
+                            {{ caption }}
+                        </v-card-text>
+                    </v-card>
+                </v-bottom-sheet>
+
+                <div
+                    v-if="xsLayout && hasLinks"
+                    class="shrink d-flex align-center"
+                >
+                    <v-menu class="fill-height">
+                        <v-btn
+                            slot="activator"
+                            small flat dark
+                            class="ma-0 fill-height"
+                            style="padding: 0 5px"
+                        >
+                            <v-icon>format_list_bulleted</v-icon>
+                        </v-btn>
+
+                        <v-list class="pa-0">
+                            <v-list-tile
+                                v-for="(link, i) in links"
+                                :key="i"
+                                :href="link.href"
+                                target="_blank"
+                            >
+                                <v-list-tile-title>{{ link.text }}</v-list-tile-title>
+                            </v-list-tile>
+                        </v-list>
+                    </v-menu>
+                </div>
+
+                <v-flex
+                    v-if="bottomPosition && !xsLayout && hasLinks"
+                    class="d-flex align-center"
+                >
+                    <v-layout>
+                        <div>
+                            <v-btn
+                                small
+                                dark
+                                color="blue darken-1"
+                                target="_blank"
+                                :href="links[0].href"
+                            >{{ links[0].text }}</v-btn>
+                        </div>
+                        <div
+                            v-if="links.length > 1"
+                            class="shrink"
+                        >
+                            <v-menu class="fill-height">
+                                <v-btn
+                                    slot="activator"
+                                    small
+                                    color="grey lighten-2 ml-0"
+                                >
+                                    <v-icon>more_horiz</v-icon>
+                                </v-btn>
+
+                                <v-list class="pa-0">
+                                    <v-list-tile
+                                        v-for="(link, i) in links.slice(1)"
+                                        :key="i"
+                                        :href="link.href"
+                                        target="_blank"
+                                    >
+                                        <v-list-tile-title>{{ link.text }}</v-list-tile-title>
+                                    </v-list-tile>
+                                </v-list>
+                            </v-menu>
+
+                        </div>
+                    </v-layout>
+                </v-flex>
             </v-layout>
+
+            <!-- Right position: caption and links -->
             <v-layout
-                v-show="caption || hasLinks"
-                :column="rightPosition"
+                v-if="rightPosition && caption"
+                column
                 class="main img-caption elevation-1"
                 :py-3="rightPosition"
                 :pl-4="rightPosition"
@@ -28,35 +138,16 @@
                 :px-3="bottomPosition"
             >
                 <v-flex
-                    v-show="!!caption"
+                    v-if="caption"
                 >
                     {{ caption }}
-                </v-flex>
-                <v-flex
-                    v-if="bottomPosition && hasLinks"
-                >
-                    <v-layout wrap>
-                        <div
-                            v-for="(link, i) in links"
-                            :key="i"
-                        >
-                            <v-btn
-                                small
-                                :dark="!i"
-                                :color="i === 0 ? 'blue darken-1' : 'grey lighten-2'"
-                                target="_blank"
-                                :href="link.href"
-                                :class="rightPosition ? 'ml-0 mr-3' : ''"
-                            >{{ link.text }}</v-btn>
-                        </div>
-                    </v-layout>
                 </v-flex>
             </v-layout>
 
             <v-flex
-                v-if="rightPosition"
-                mt-3
+                v-if="rightPosition && hasLinks"
                 class="main"
+                mt-3
             >
                 <v-layout wrap>
                     <div
@@ -74,8 +165,9 @@
                     </div>
                 </v-layout>
             </v-flex>
-        </div>
-    </div>
+
+        </v-flex>
+    </v-flex>
 </template>
 
 <script>
@@ -85,6 +177,9 @@ export default {
     props: {
         position: {
             type: String,
+        },
+        xsLayout: {
+            type: Boolean,
         },
         title: {
             type: String,
@@ -98,13 +193,11 @@ export default {
         links: {
             type: Array,
         },
-        'css-class': {
-            type: String,
-        },
     },
     data() {
         return {
             showExpanded: true,
+            showCaptionSheet: false,
         };
     },
     computed: {
@@ -117,11 +210,28 @@ export default {
         hasLinks() {
             return this.links && this.links.length;
         },
+        cssClasses() {
+            let classes = [];
+
+            classes.push(this.rightPosition ? 'right-position' : 'bottom-position');
+
+            this.rightPosition && !this.showExpanded && classes.push('collapsed-right');
+
+            this.xsLayout && classes.push('collapsed-bottom');
+
+            return classes;
+        },
     },
     methods: {
         toggleDisplay() {
             this.showExpanded = !this.showExpanded;
             this.$emit('toggled', this.showExpanded);
+        },
+        hideCaptionSheet() {
+            this.showCaptionSheet = false;
+        },
+        unhideCaptionSheet() {
+            this.showCaptionSheet = true;
         },
     },
 };
@@ -130,19 +240,40 @@ export default {
 
 <style lang="scss">
 
-.small-layout #gallery-tabs > .tabs__bar {
-    height: 0;
+.shrink {
+    flex-grow: 0 !important;
+
+    .btn, &.btn {
+        min-width: auto;
+
+        .btn__content {
+            padding-left: 3px;
+            padding-right: 3px;
+        }
+    }
 }
 
-.small-layout.image-viewer-infobox {
+.small-layout .tabs__bar {
+    display: none;
+}
+
+.small-layout, .bottom-position {
+    .title {
+        font-size: 16px!important;
+        text-shadow: 1px 1px 0px rgba(0,0,0,0.7);
+    }
+}
+
+.bottom-position.image-viewer-info-box {
     position: fixed;
     bottom: 0;
     width: 100%;
-    padding: 8px 10px;
-    height: 100px;
+    padding: 0;
+    height: 50px;
 
-    .title {
-        font-size: 16px!important;
+    .lr-padding {
+        padding-left: 8px;
+        padding-right: 8px;
     }
 
     .main {
@@ -150,11 +281,19 @@ export default {
     }
 
     .img-caption {
-        border-radius: 3px;
+        &.truncatable {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            line-height: 20px;     /* fallback */
+            max-height: 40px;      /* fallback */
+            -webkit-line-clamp: 2; /* number of lines to show */
+            -webkit-box-orient: vertical;
+        }
     }
 }
 
-.full-layout.image-viewer-infobox {
+.right-position.image-viewer-info-box {
     position: absolute;
     top: calc(96px + 1.5%);
     height: calc(100% - 2*1.5% - 96px);
@@ -163,14 +302,14 @@ export default {
     right: 0;
     width: calc(120px + 15vw);
 
-    &.collapsed {
+    &.collapsed-right {
         right: calc(-120px - 15vw + 38px);
 
         .main {
             opacity: 0;
         }
 
-        .image-viewer-infobox-content {
+        .image-viewer-info-box-content {
             padding-left: 5px;
 
             .expand-collapse-btn {
@@ -183,7 +322,7 @@ export default {
         }
     }
 
-    .image-viewer-infobox-content
+    .image-viewer-info-box-content
     {
         position: relative;
         height: 100%;
@@ -214,13 +353,18 @@ export default {
     }
 }
 
+.image-viewer-info-box {
+    .title {
+        white-space: nowrap;
+    }
+}
 .blue-tooltip {
     background-color: #1970b6;
     opacity: 0.95!important;
     font-size: 1em;
 }
 
-.small-layout, .full-layout {
+.right-position {
     .img-caption {
         background-color: #888;
     }

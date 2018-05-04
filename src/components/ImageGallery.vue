@@ -1,11 +1,13 @@
 <template>
     <v-dialog
-        v-model="show"
+        v-model="showDialog"
         fullscreen
         lazy
-        @keydown.esc="show = false"
+        @keydown.esc="showDialog = false"
         @keydown.left="prevImage($event)"
         @keydown.right="nextImage($event)"
+        @keydown.up="showCaptionSheet()"
+        @keydown.down="hideCaptionSheet()"
         transition="scale-transition"
     >
         <v-card
@@ -14,22 +16,37 @@
             height="100%"
         >
             <v-btn
-                fab fixed right
-                top
+                fab small fixed right
                 :dark="smallLayout"
                 :color="fullLayout ? 'grey lighten-1' : 'grey'"
-                small
-                @click.stop="show = false"
-                class="elevation-10"
-                :style="fullLayout ? 'top: 28px' : ''"
+                @click.stop="showDialog = false"
+                class="dialog-close-button elevation-10"
             >
                 <v-icon>close</v-icon>
             </v-btn>
+            <v-layout
+                v-if="smallLayout"
+                class="image-viewer-mini-top-bar grey darken-2 grey--text text--lighten-4 pl-2"
+            >
+                <v-tooltip
+                        bottom
+                        :max-width="350"
+                        content-class="blue-tooltip"
+                        class="d-flex align-center"
+                >
+                    <h2 class="title" slot="activator">{{ currTitle }}</h2>
+                    <span>{{ currDescription }}</span>
+                </v-tooltip>
+
+                <div class="x-of-y ml-2 d-flex align-center grey--text text--lighten-1">
+                    ({{ currImgNum }} of {{ activeGallery.images.length }})
+                </div>
+            </v-layout>
             <v-tabs
                 show-arrows
                 grow
                 v-model="activeGalleryId"
-                id="gallery-tabs"
+                class="gallery-tabs"
             >
                 <v-tabs-slider color="blue"></v-tabs-slider>
                 <v-tab
@@ -39,7 +56,7 @@
                 >
                     {{ item.title }}
                 </v-tab>
-                <v-tabs-items v-model="activeGalleryId" id="gallery-tabs-items">
+                <v-tabs-items v-model="activeGalleryId" class="gallery-tabs-items">
                     <v-tab-item
                         v-for="(gallery, i) in items"
                         :key="i"
@@ -47,7 +64,7 @@
                     >
                         <v-card flat class="grey darken-4">
                             <v-tabs
-                                id="image-tabs"
+                                class="image-tabs"
                                 lazy
                                 dark
                                 show-arrows
@@ -63,22 +80,21 @@
                                 </v-tab>
                                 <v-tabs-items
                                     v-model="activeImageId[i]"
-                                    id="image-tabs-items"
-                                    class="image-viewer-container grey darken-4"
+                                    class="image-tabs-items image-viewer-container grey darken-4"
                                 >
                                     <div class="image-viewer-main" :class="fullLayout && !infoBoxRightExpanded ? 'full' : ''">
                                         <v-tab-item
                                             v-for="(image, j) in gallery.images"
                                             :key="j"
                                             :id="'tab-' + i + '-' + j"
-                                            :width="fullLayout ?
-                                                (infoBoxRightExpanded ? 'calc(85% - 135px)' : 'calc(100% - 37px)')
-                                                : 'calc(100% - 16px)'"
+                                            :style="'height: ' + tabsContentHeight"
                                         >
                                             <v-container
                                                 fluid
-                                                style="height: calc(100vh - 96px)"
-                                                :style="smallLayout ? 'padding: 12px 0 0 0' : ''"
+                                                :style="{
+                                                    padding: smallLayout ? '8px 0 8px 0' : '12px',
+                                                    height: '100%'
+                                                }"
                                                 @touchend.stop="imgTouchEnd"
                                                 @touchstart.stop="imgTouchStart"
                                             >
@@ -86,17 +102,19 @@
                                                     fill-height
                                                     justify-center
                                                     align-center
-                                                    style="max-height: calc(100%)"
+                                                    style="max-height: 100%"
                                                 >
                                                     <video
                                                         v-if="image.ext === 'mp4'"
                                                         autoplay loop controls
                                                         width="100%"
+                                                        class="elevation-20"
                                                         style="max-width: 100%; max-height: 100%"
                                                         :src="image.src"
                                                     ></video>
                                                     <img
                                                         v-else
+                                                        class="elevation-20"
                                                         :srcset="image.srcSet"
                                                         style="max-width: 100%; max-height: 100%"
                                                     />
@@ -116,11 +134,13 @@
         <Image-gallery-info-box
             @toggled="infoBoxToggled"
             :position="smallLayout ? 'bottom' : 'right'"
+            :xs-layout="xsLayout"
             :css-class="layoutCssClass"
             :title="currTitle"
             :description="currDescription"
             :caption="currCaption"
             :links="currLinks"
+            ref="infoBox"
         />
 
         <v-snackbar
@@ -152,14 +172,14 @@ export default {
         items: {
             type: Array,
         },
-        showInit: {
+        showDialogInit: {
             type: Boolean,
             default: false,
         },
     },
     data() {
         return {
-            show: this.showInit,
+            showDialog: this.showDialogInit,
             showSnackbar: true,
             activeGalleryId: null,
             activeImageId: Array(this.items.length).fill(null),
@@ -167,6 +187,9 @@ export default {
         };
     },
     computed: {
+        xsLayout() {
+            return this.smallLayout && this.$vuetify.breakpoint.smAndDown;
+        },
         smallLayout() {
             return this.$vuetify.breakpoint.width < 1200;
         },
@@ -187,6 +210,9 @@ export default {
         },
         currLinks() {
             return this.activeImage && this.activeImage.links;
+        },
+        showBottomInfoBox() {
+            return this.smallLayout && (this.currCaption || (this.currLinks && this.currLinks.length));
         },
         activeGallery() {
             return this.items[this.activeGalleryIndex];
@@ -211,6 +237,26 @@ export default {
 
             return this.activeImageId[galleryIdx].split('-')[2];
         },
+        currImgNum() {
+            return parseInt(this.activeImageIndex, 10) + 1;
+        },
+        tabsContentHeight() {
+            let h = 'calc(100vh';
+
+            if (this.smallLayout || this.showBottomInfoBox) {
+                h += ' - 50px';
+            }
+
+            // top bar(s) height
+            if (this.fullLayout) {
+                h += ' - 96px';
+            }
+            else {
+                h += ' - 27px';
+            }
+
+            return `${h});`;
+        },
     },
     watch: {
         activeGalleryId() {
@@ -219,9 +265,10 @@ export default {
 
             // eslint-disable-next-line
             if (this.activeImageIndex == 0) {
+                this.$set(this.activeImageId, galleryIdx, `tab-${galleryIdx}-1`);
+
                 /* eslint-disable no-underscore-dangle */
                 const _this = this;
-                _this.$set(_this.activeImageId, galleryIdx, `tab-${galleryIdx}-1`);
 
                 Vue.nextTick(() => {
                     _this.$set(_this.activeImageId, galleryIdx, `tab-${galleryIdx}-0`);
@@ -233,7 +280,7 @@ export default {
     },
     methods: {
         openGallery(galleryIdx) {
-            this.show = true;
+            this.showDialog = true;
 
             this.activeGalleryId = `tab-${galleryIdx}`;
 
@@ -259,7 +306,7 @@ export default {
             }
         },
         nextImage($event) {
-            this.handleKeyEvent($event);
+            this.handleImageChange($event);
 
             let nextImageIndex = (this.activeImageIndex - 0) + 1;
 
@@ -270,7 +317,7 @@ export default {
             this.$set(this.activeImageId, this.activeGalleryIndex, `${this.activeGalleryId}-${nextImageIndex}`);
         },
         prevImage($event) {
-            this.handleKeyEvent($event);
+            this.handleImageChange($event);
 
             let prevImageIndex = this.activeImageIndex - 1;
 
@@ -308,6 +355,16 @@ export default {
                 this.showSnackbar = false;
             }
         },
+        handleImageChange($event) {
+            this.handleKeyEvent($event);
+            this.hideCaptionSheet();
+        },
+        hideCaptionSheet() {
+            this.$refs.infoBox.hideCaptionSheet();
+        },
+        showCaptionSheet() {
+            this.$refs.infoBox.unhideCaptionSheet();
+        },
     },
     mounted() {
     },
@@ -321,14 +378,23 @@ export default {
     overflow: hidden;
 }
 
-#gallery-tabs > .tabs__bar .tabs__div {
+.full-layout .dialog-close-button {
+    top: 30px;
+}
+
+.small-layout .dialog-close-button {
+    top: 7px;
+    right: 7px;
+}
+
+.gallery-tabs > .tabs__bar .tabs__div {
     text-transform: none;
     font-size: 16px;
     font-weight: 500;
     letter-spacing: 0.1px;
     color: #666!important;
 }
-#gallery-tabs > .tabs__bar .tabs__div .tabs__item--active {
+.gallery-tabs > .tabs__bar .tabs__div .tabs__item--active {
     font-family: "Open Sans", sans-serif;
     font-weight: 600;
     font-size: 16px;
@@ -336,11 +402,11 @@ export default {
     color: #000;
 }
 
-#image-tabs .tabs__div {
+.image-tabs .tabs__div {
     font-family: "Open Sans", sans-serif;
 }
 
-#image-tabs .tabs__content {
+.image-tabs .tabs__content {
 }
 
 .image-viewer-container {
@@ -352,9 +418,16 @@ export default {
     overflow: hidden;
 }
 
+.image-viewer-mini-top-bar {
+    height: 27px;
+
+    .x-of-y {
+        font-size: 0.82em;
+    }
+}
+
 .full-layout .image-viewer-main {
     max-width: calc(85vw - 135px);
-    max-height: calc(100vh - 96px);
     transition: max-width .6s ease;
 
     &.full {
@@ -362,14 +435,16 @@ export default {
     }
 }
 
-.small-layout #image-tabs {
-    .tabs__wrapper, .tabs__container {
-        height: 37px;
+.small-layout {
+    .image-tabs {
+        .tabs__wrapper, .tabs__container {
+            height: 37px;
+        }
     }
-}
-.small-layout .image-viewer-main {
-    max-width: 100%;
-    max-height: calc(100vh - 48px - 100px);
+
+    .image-viewer-main {
+        max-width: 100%;
+    }
 }
 
 </style>
