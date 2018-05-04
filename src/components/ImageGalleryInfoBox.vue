@@ -282,13 +282,14 @@ export default {
 
     .img-caption {
         &.truncatable {
+            /* Without the line below, autoprefixer will remove the -webkit-box-orient rule (in production builds) */
+            /*! autoprefixer: off */
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;
             line-height: 20px;     /* fallback */
             max-height: 40px;      /* fallback */
             -webkit-line-clamp: 2; /* number of lines to show */
-            /*! autoprefixer: ignore next */
             -webkit-box-orient: vertical;
         }
     }
