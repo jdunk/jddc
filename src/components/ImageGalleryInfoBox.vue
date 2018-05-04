@@ -288,9 +288,8 @@ export default {
             line-height: 20px;     /* fallback */
             max-height: 40px;      /* fallback */
             -webkit-line-clamp: 2; /* number of lines to show */
-            /* autoprefixer: off */
+            /*! autoprefixer: ignore next */
             -webkit-box-orient: vertical;
-            /* autoprefixer: on */
         }
     }
 }
