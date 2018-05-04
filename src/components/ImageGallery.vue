@@ -276,7 +276,11 @@ export default {
                 /* eslint-enable no-underscore-dangle */
             }
         },
-
+        showDialog() {
+            if (!this.showDialog) {
+                this.hideCaptionSheet();
+            }
+        },
     },
     methods: {
         openGallery(galleryIdx) {
