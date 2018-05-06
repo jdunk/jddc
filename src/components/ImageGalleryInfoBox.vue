@@ -47,6 +47,7 @@
                     <v-card
                         class="grey--text text--lighten-4"
                         style="background-color: #666;"
+                        @touchend.stop="showCaptionSheet = false"
                     >
                         <v-card-text
                             v-html="caption"
@@ -58,12 +59,12 @@
                     v-if="xsLayout && hasLinks"
                     class="shrink d-flex align-center"
                 >
-                    <v-menu class="fill-height">
+                    <v-menu class="fill-height" v-model="showLinksMenu" ref="linksMenu">
                         <v-btn
                             slot="activator"
                             small flat dark
                             class="ma-0 fill-height"
-                            style="padding: 0 5px"
+                            style="padding: 0 5px;"
                         >
                             <v-icon>format_list_bulleted</v-icon>
                         </v-btn>
@@ -197,6 +198,7 @@ export default {
         return {
             showExpanded: true,
             showCaptionSheet: false,
+            showLinksMenu: false,
         };
     },
     computed: {
@@ -227,6 +229,13 @@ export default {
             return classes;
         },
     },
+    watch: {
+        showLinksMenu() {
+            this.$nextTick(() => {
+                this.setMenuZIndex();
+            });
+        },
+    },
     methods: {
         toggleDisplay() {
             this.showExpanded = !this.showExpanded;
@@ -235,8 +244,42 @@ export default {
         hideCaptionSheet() {
             this.showCaptionSheet = false;
         },
+        hideLinksMenu() {
+            this.showLinksMenu = false;
+        },
         unhideCaptionSheet() {
             this.showCaptionSheet = true;
+        },
+        getMenuElem() {
+            let menuComp = this.$refs.linksMenu,
+                menuChild = menuComp && menuComp.$children && menuComp.$children[1];
+
+            return menuChild && menuChild.$el && menuChild.$el.parentElement;
+        },
+        setMenuZIndex() {
+            let menuEl = this.getMenuElem();
+
+            if (!menuEl) {
+                return;
+            }
+
+            menuEl.style.zIndex = 2000;
+        },
+        domPosition(el) {
+            let cs = getComputedStyle(el);
+            return {
+                display: el.style.display,
+                displayC: cs.getPropertyValue('display'),
+                topC: cs.getPropertyValue('top'),
+                leftC: cs.getPropertyValue('left'),
+                zIndexC: cs.getPropertyValue('z-index'),
+                opacityC: cs.getPropertyValue('opacity'),
+                top: el.style.top,
+                left: el.style.left,
+                zIndex: el.style.zIndex,
+                opacity: el.style.opacity,
+                transformOrigin: el.style.transformOrigin,
+            };
         },
     },
 };

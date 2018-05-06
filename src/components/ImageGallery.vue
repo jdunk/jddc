@@ -362,9 +362,13 @@ export default {
         handleImageChange($event) {
             this.handleKeyEvent($event);
             this.hideCaptionSheet();
+            this.hideLinksMenu();
         },
         hideCaptionSheet() {
             this.$refs.infoBox.hideCaptionSheet();
+        },
+        hideLinksMenu() {
+            this.$refs.infoBox.hideLinksMenu();
         },
         showCaptionSheet() {
             this.$refs.infoBox.unhideCaptionSheet();
