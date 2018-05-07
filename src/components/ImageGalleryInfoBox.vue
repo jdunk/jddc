@@ -84,7 +84,7 @@
 
                 <v-flex
                     v-if="bottomPosition && !xsLayout && hasLinks"
-                    class="d-flex align-center"
+                    class="shrink d-flex align-center"
                 >
                     <v-layout>
                         <div>
