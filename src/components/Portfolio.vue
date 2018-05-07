@@ -119,23 +119,23 @@ portfolioItems = [
     ...
   }
 ];
-
 */
+
 r = require.context('../assets/portfolio/', true, /\.(jpe?|png|mp4)$/);
-// console.log(r.keys());
 
 r.keys().forEach((key) => {
     let pieces = key.split('/').slice(1), // Discard the './' prefix
         gallerySlug = pieces[0],
-        filename = pieces[1];
+        filename = pieces[1],
+        filenameWithoutExt = filename.substring(0, filename.lastIndexOf('.'));
 
     if (!has(portfolioLookup, gallerySlug)) {
         console.warn(`info.json not found in portfolio dir "${gallerySlug}"`);
         return;
     }
 
-    let portfolioItem = portfolioItemByKey(gallerySlug);
-    let thisImgData = {},
+    let portfolioItem = portfolioItemByKey(gallerySlug),
+        thisImgData = {},
         imgData,
         imgSlug,
         imgReqd,
@@ -143,6 +143,16 @@ r.keys().forEach((key) => {
 
     imgReqd = r(key);
 
+    // Any file named "cover.(png|jpg)" is special
+    if (filenameWithoutExt === 'cover') {
+        // Store it at the gallery's top level (not under imagesData)
+        portfolioItem.cover = imgReqd;
+
+        return;
+    }
+
+    // Support both: webpack loaders that return objects
+    // and loaders that return strings
     if (typeof imgReqd === 'string') {
         // Morph into data structure to match responsive-loader's output
         imgReqd = {
@@ -169,7 +179,7 @@ r.keys().forEach((key) => {
         });
     }
     else {
-        imgSlug = filename.substring(0, filename.lastIndexOf('.'));
+        imgSlug = filenameWithoutExt;
         merge(thisImgData, imgReqd);
     }
 
@@ -180,10 +190,7 @@ r.keys().forEach((key) => {
 
     imgData = { [imgSlug]: thisImgData };
 
-    console.log({ imgSlug, thisImgData, imgData });
-    console.log({ before: cloneDeep(portfolioItem.imageData) });
     merge(portfolioItem, { imageData: imgData });
-    console.log({ after: cloneDeep(portfolioItem.imageData) });
 
     let mergedImgData = portfolioItem.imageData[imgSlug];
 

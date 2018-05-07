@@ -5,7 +5,7 @@
         <v-card-media
                 class="white--text"
                 height="200"
-                v-bind="images[0]"
+                v-bind="coverImg"
                 @click.stop="$emit('portfolio-item-clicked')"
         >
         </v-card-media>
@@ -49,7 +49,13 @@ export default {
         'description',
         'images',
         'links',
+        'cover',
     ],
+    computed: {
+        coverImg() {
+            return this.cover || this.images[0];
+        },
+    },
     mounted() {
         console.log({ images: this.images });
     },
