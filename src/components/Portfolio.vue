@@ -239,12 +239,15 @@ export default {
         updateImages() {
             console.log('update Images started');
 
+            let activeImageSlug = this.$refs.imageGallery.activeImageSlug;
             let screenWidth = this.screenWidth;
 
             this.portfolioItems.forEach((portfolioItem) => {
                 portfolioItem.images = this.getImagesByScreenWidth(screenWidth, portfolioItem);
                 console.log({ 'portfolioItem.images': portfolioItem.images });
             });
+
+            this.$refs.imageGallery.setActiveImageBySlug(activeImageSlug);
 
             console.log('update Images finished');
         },
@@ -253,6 +256,7 @@ export default {
 
             portfolioItem.imageSlugsOrdered.forEach((imgSlug) => {
                 let imgData = cloneDeep(portfolioItem.imageData[imgSlug]);
+                imgData.slug = imgSlug;
 
                 if (!imgData.overrides) {
                     imgData.src && images.push(imgData);

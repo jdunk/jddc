@@ -180,6 +180,7 @@
  */
 
 import Vue from 'vue';
+import { findIndex } from 'lodash';
 import ImageGalleryInfoBox from './ImageGalleryInfoBox';
 
 export default {
@@ -256,6 +257,9 @@ export default {
 
             return this.activeImageId[galleryIdx].split('-')[2];
         },
+        activeImageSlug() {
+            return this.activeImage && this.activeImage.slug;
+        },
         currImgNum() {
             return parseInt(this.activeImageIndex, 10) + 1;
         },
@@ -313,6 +317,25 @@ export default {
              */
             this.$set(this.activeImageId, galleryIdx, `tab-${galleryIdx}-1`);
             this.$set(this.activeImageId, galleryIdx, `tab-${galleryIdx}-0`);
+        },
+        setActiveImageBySlug(imageSlug) {
+            /**
+             * When the viewport is resized after initial render, the set of images may change.
+             *
+             * The active image is most properly identified by its slug, and it may appear at a
+             * totally different index after resize.
+             *
+             * This method is used to show the same image if possible at its new index after resize.
+             * If said image is no longer in the images array, then show the first image instead.
+             */
+            if (imageSlug && this.activeGallery) {
+                let galleryIdx = this.activeGalleryIndex,
+                    imageFound = findIndex(this.activeGallery.images, { slug: imageSlug }),
+                    imageIdx = imageFound >= 0 ? imageFound : '0';
+
+                console.log({ imageSlug, imageFound, imageIdx });
+                this.$set(this.activeImageId, galleryIdx, `tab-${galleryIdx}-${imageIdx}`);
+            }
         },
         imgTouchStart($event) {
             this.lastTouchStartX = $event.changedTouches[0].clientX;
