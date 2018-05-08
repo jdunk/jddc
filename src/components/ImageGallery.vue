@@ -159,7 +159,26 @@
 
 <script>
 
-// eslint-disable-next-line
+/**
+ * Since we have tabs within tabs here, there may actually multiple "active" image tabs at any given time.
+ * (One "active" lower [image] tab for each upper [gallery] tab.)
+ *
+ * Note: there can only be ONE active gallery, and thus, only one truly active image at a time [the active
+ * gallery's active image].
+ *
+ * Accordingly, the 'activeImageId' prop is actually an associative array keyed by gallery id.
+ *
+ * For example:
+ *
+ * activeImageId = {
+ *   0: 'tab-0-0',
+ *   1: 'tab-1-5',
+ *   2: 'tab-2-9',
+ *   3: 'tab-3-1',
+ * }
+ *
+ */
+
 import Vue from 'vue';
 import ImageGalleryInfoBox from './ImageGalleryInfoBox';
 
