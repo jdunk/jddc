@@ -92,6 +92,7 @@
                                 small
                                 dark
                                 color="blue darken-1"
+                                class="px-1"
                                 target="_blank"
                                 :href="links[0].href"
                             >{{ links[0].text }}</v-btn>
@@ -343,6 +344,14 @@ export default {
     }
 }
 
+.bottom-sheet {
+    font-size: 1.15em;
+
+    a {
+        color: lighten(#1976d2, 20%);
+    }
+}
+
 .right-position.image-viewer-info-box {
     position: absolute;
     top: calc(96px + 1.5%);
@@ -399,6 +408,12 @@ export default {
 
         .img-caption {
             border-radius: 20px 4px/100% 6px;
+            font-size: 1.15em;
+            -webkit-font-smoothing: antialiased;
+
+            a {
+                color: lighten(#1976d2, 28%);
+            }
         }
     }
 }

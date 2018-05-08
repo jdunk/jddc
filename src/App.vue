@@ -15,8 +15,11 @@ export default {
 <style lang="scss">
 
 html {
-    font-smooth: auto;
     -webkit-font-smoothing: auto;
+}
+
+.btn {
+    -webkit-font-smoothing: antialiased;
 }
 
 .pattern-bg {

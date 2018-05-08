@@ -64,6 +64,7 @@ nav div.toolbar__content {
     font-weight: 600!important;
     font-family: 'Open Sans', 'sans-serif';
     letter-spacing: -0.01em!important;
+    -webkit-font-smoothing: auto;
 }
 
 </style>
