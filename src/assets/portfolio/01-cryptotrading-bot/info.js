@@ -27,7 +27,7 @@ module.exports = {
                 </div>
                 <div class="p">
                     (I had never done any financial trading before, so I first taught myself everything I needed to know
-                    about day-trading via a deep 2-week binge, devouring investopedia.com in the process.)
+                    about day-trading via a deep 2-week binge, devouring investopedia.com and various in-depth articles.)
                 </div>
             `,
             links: [
@@ -79,13 +79,22 @@ module.exports = {
             `,
             links: mainLinks,
         },
-        '06-candlestick-fetching': {
+        '06-update-candlesticks-1': {
             caption: `
                 <div class="p">
                     So I wrote a process to import and continuously fetch this data, storing it in MySQL tables.
                 </div>
                 <div class="p">
-                    
+                    There are 86,000 records per day per trading pair (and that's just the 1-minute ’sticks), so I partitioned
+                    up the work and jobified it so that it can be run by queue workers in parallel.
+                </div>
+            `,
+            links: mainLinks,
+        },
+        '06-update-candlesticks-2': {
+            caption: `
+                <div class="p">
+                    It takes about 1 minute to fetch 1 week’s worth of 1-minute data per trading pair.
                 </div>
             `,
             links: mainLinks,
@@ -98,7 +107,7 @@ module.exports = {
                 <div class="p">
                     Chart.js has no “candlestick” chart type built in, so I installed this ugly
                     <a href="http://www.chartjs.org/chartjs-chart-financial/" target="_blank">chart-financial</a> 
-                    plugin (seen here).
+                    plugin.
                 </div>
                 <div class="p">
                     (I'll be switching this to a much-prettier plain “line” chart type soon.)
