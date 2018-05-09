@@ -121,7 +121,7 @@ portfolioItems = [
 ];
 */
 
-r = require.context('../assets/portfolio/', true, /\.(jpe?|png|mp4)$/);
+r = require.context('../assets/portfolio/', true, /\.(jpe?g|png|mp4)$/);
 
 r.keys().forEach((key) => {
     let pieces = key.split('/').slice(1), // Discard the './' prefix

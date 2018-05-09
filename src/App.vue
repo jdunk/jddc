@@ -18,6 +18,11 @@ html {
     -webkit-font-smoothing: auto;
 }
 
+code {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
 .btn {
     -webkit-font-smoothing: antialiased;
 }
