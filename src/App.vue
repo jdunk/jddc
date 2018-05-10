@@ -23,6 +23,11 @@ code {
   margin-right: 0 !important;
 }
 
+a.plain {
+  text-decoration: none !important;
+  color: inherit;
+}
+
 .btn {
     -webkit-font-smoothing: antialiased;
 }

@@ -28,7 +28,7 @@ module.exports = [
     },
     {
         quote: `
-            <a href="https://youtu.be/P315lfGH1RQ?t=15m38s" target="_blank">Guys, he's <em>good!</em></a>`,
+            <a href="https://youtu.be/P315lfGH1RQ?t=15m38s" target="_blank" class="plain">Guys, he's <em>good!</em></a>`,
         by: 'Mikey Bustos, famous YouTube musician/comedian',
     },
 ];

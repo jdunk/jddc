@@ -37,11 +37,6 @@ blockquote {
     quotes:"\201C""\201D";
     font-size: 1.57em;
     text-align: left;
-
-    a {
-        text-decoration: none !important;
-        color: inherit;
-    }
 }
 
 blockquote:before, blockquote :last-child:after {
