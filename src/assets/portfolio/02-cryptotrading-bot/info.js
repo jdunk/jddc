@@ -47,7 +47,7 @@ module.exports = {
         '03-get-balances': {
             caption: `
                 <div class="p">
-                    I built many CLI commands to quickly execute various tasks.
+                    I built many CLI (command-line) commands to quickly execute various tasks.
                 </div>
                 <div class="p">
                     This one fetches and displays all current wallet balances.
@@ -110,7 +110,7 @@ module.exports = {
                     plugin.
                 </div>
                 <div class="p">
-                    (I'll be switching this to a much-prettier plain “line” chart type soon.)
+                    (I'll be switching this to the much-prettier plain “line” chart type soon.)
                 </div>
             `,
             links: [
