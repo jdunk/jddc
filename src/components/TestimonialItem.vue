@@ -37,6 +37,11 @@ blockquote {
     quotes:"\201C""\201D";
     font-size: 1.57em;
     text-align: left;
+
+    a {
+        text-decoration: none !important;
+        color: inherit;
+    }
 }
 
 blockquote:before, blockquote :last-child:after {
@@ -53,7 +58,7 @@ blockquote:before {
     top: 5px;
 }
 
-blockquote :last-child:after {
+blockquote > :last-child:after {
     display: inline;
     content: close-quote;
     font-size: 2.5em;
@@ -63,7 +68,7 @@ blockquote :last-child:after {
     left: 5px;
 }
 
-blockquote :first-child {
+blockquote > :first-child {
     margin: 5px 20px 0 55px;
     display: block;
 }
@@ -71,16 +76,16 @@ blockquote :first-child {
 blockquote.sm, blockquote.xs {
     font-size: 1.3em;
 
-    :first-child {
-        margin: 0 10px 0 32px;
-    }
-
     &:before {
         font-size: 3em;
         margin-left: -5px;
     }
 
-    :last-child:after {
+    > :first-child {
+        margin: 0 10px 0 32px;
+    }
+
+    > :last-child:after {
         font-size: 2.3em;
         vertical-align: -15px;
     }

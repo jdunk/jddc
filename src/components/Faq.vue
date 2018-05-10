@@ -184,7 +184,8 @@
                                 inspirationally loving, strong, and supportive women in my family
                                 (my sister <a href="https://www.linkedin.com/in/nicole-l-wilson/" target="_blank">Nicole</a>,
                                 my <a href="http://songsbyjennifer.com/" target="_blank">mother</a>,
-                                and my cousin <a href="https://www.linkedin.com/in/marilee-habenicht/" target="_blank">Marilee</a>).
+                                and my cousin
+                                <a href="https://www.linkedin.com/in/marilee-habenicht/" target="_blank">Marilee</a>).
                             </template>
                         </Faq-item>
                     </v-expansion-panel>
