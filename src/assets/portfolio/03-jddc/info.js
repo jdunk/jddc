@@ -1,3 +1,12 @@
+let ghUrl = 'https://github.com/jdunk/jddc',
+    mediumArticleUrl = 'https://medium.com/@jaredduncan/jaredduncan-com-and-the-tools-i-used-to-build-it-adb8cfd01daf',
+    mainLinks = [
+        {
+            text: 'View Source Code',
+            href: ghUrl,
+        },
+    ];
+
 module.exports = {
     title: 'jaredduncan.com',
     description: "That's right, this very site you're browsing right now I hand-coded with Vue, Vuetify, and Webpack.",
@@ -5,29 +14,30 @@ module.exports = {
         github: 'https://github.com/jdunk/jddc',
     },
     imageData: {
-        'jaredduncan.com': {
+        '01-main-page': {
             caption: `
                 <div class="p">
-                    That's right, this very site you're browsing right now I hand-coded with Vue, Vuetify, and Webpack.
+                    Yes, this very site you’re browsing right now!
                 </div>
-
                 <div class="p">
-                    This long caption demonstrates that only two lines are shown (initially) on smaller/mobile views 
-                    (a best compromise between the ability to view most images and the ability to view most captions 
-                    at the same time).
+                    I hand-crafted it using Vue, Vuetify, and Webpack.
                 </div>
-
                 <div class="p">
-                    On these smaller/mobile views, the caption is clickable upon which the full caption is displayed in 
-                    a "bottom sheet". The bottom sheet hides automatically upon switching to a different image. 
-                    It can also be manually shown/hidden using the up/down arrow keys, respectively (for smaller windows 
-                    on desktop devices).
+                    It’s not from a template.
                 </div>
+            `,
+            links: mainLinks,
+        },
+        '10-medium-article': {
+            caption: `
+                An article I published on medium.com to tell
+                <a href="${mediumArticleUrl}" target="_blank">the story behind this site</a> and how I ended up choosing the
+                tools I did to build it. 
             `,
             links: [
                 {
-                    text: 'View Source Code',
-                    href: 'https://github.com/jdunk/jddc',
+                    text: 'View the Backstory',
+                    href: mediumArticleUrl,
                 },
             ],
         },
