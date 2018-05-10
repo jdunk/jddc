@@ -28,6 +28,22 @@ module.exports = {
             `,
             links: mainLinks,
         },
+        '02-responsive-main': {
+            caption: `
+                <div class="p">
+                    That's right, you can even browse this site on a small phone.
+                </div>
+                <div class="p">
+                    100% responsive = You’ll never see a horizontal scrollbar no matter what. All content is dynamically
+                    arranged to make the most out of whatever screen space you have available.
+                </div>
+                <div class="p">
+                    If you're using a desktop browser, then feel free to resize your browser window all the way down
+                    (as narrow as possible) and then all the way back up again, and watch how the layout changes as you go.
+                </div>
+            `,
+            links: mainLinks,
+        },
         '10-medium-article': {
             caption: `
                 An article I published on medium.com to tell
