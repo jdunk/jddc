@@ -129,7 +129,7 @@ module.exports = {
             caption: `
                 <div class="p">
                     It was no small task, but I manually created small (and often mid-size) variations of every single
-                    image here, in every gallery. (Except only for the Medium article screenshot--coming up next--which
+                    image here, in every gallery. (Except only for the Medium article screenshot&mdash;coming up next&mdash;which
                     happened to look fine at all sizes.)
                 </div>
                 <div class="p">
