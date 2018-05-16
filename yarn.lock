@@ -2384,6 +2384,10 @@ ecc-jsbn@~0.1.1:
   dependencies:
     jsbn "~0.1.0"
 
+ecma-proposal-object-values-entries@tc39/proposal-object-values-entries:
+  version "0.0.0"
+  resolved "https://codeload.github.com/tc39/proposal-object-values-entries/tar.gz/1be53c9bab75607e24159c6921d666cd9cdbdb43"
+
 editorconfig@^0.13.2:
   version "0.13.3"
   resolved "https://registry.yarnpkg.com/editorconfig/-/editorconfig-0.13.3.tgz#e5219e587951d60958fd94ea9a9a008cdeff1b34"
