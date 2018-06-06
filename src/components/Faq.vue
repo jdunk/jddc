@@ -33,12 +33,14 @@
                             </template>
                             <template slot="answer">
                                 <div class="p">
-                                    Quite a bit, actually. The overarching theme of my latest projects is “picking up and
-                                    solidifying new skills,” particularly the most interesting, fun, and useful ones which
-                                    will pay dividends for years to come. Thus, I now have a very serviceable proficiency with
-                                    Vue, Vuetify, Webpack, ES6, and Chrome Extension authoring. I’ve learned how to create
+                                    Quite a bit, actually. The overarching theme of my latest projects is “expanding and
+                                    strengthening my skill set,” particularly the most interesting, fun, and useful skills
+                                    which
+                                    will pay dividends for years to come. Thus, I now have a much more solid proficiency with
+                                    Vue, Vuetify, Webpack, ES6, Jest, and Chrome Extension authoring.
+                                    I’ve learned how to create
                                     custom Amazon Alexa skills (using AWS Lambda) and beautiful &amp; fast charts with
-                                    ChartJS.
+                                    ChartJS. I'm now checking out TensorFlow and GraphQL, and I'm using Node a lot more.
                                 </div>
 
                                 <div class="p">
@@ -82,13 +84,21 @@
                         </Faq-item>
                         <Faq-item>
                             <template slot="question">
-                                What is your location exactly?
+                                Where are you currently located?
                             </template>
                             <template slot="answer">
-                                At this very moment, I’m in Manila, though I was recently back in California for a few
-                                months.
-                                The Philippines is my favorite place on Earth and I’d love to live here longer, but I
-                                also love to travel, ergo my location is flexible.
+                                <p>
+                                Lately I've been bouncing between California and Manila. (I'm a US Citizen, and the
+                                address on my tax returns is in California.)
+                                </p>
+
+                                <p>
+                                Since I'm perfectly willing
+                                to relocate very quickly for the right opportunity (see below), I hope that
+                                wherever my current physical location is this week isn't a major factor in the much
+                                bigger-picture decision of whether or not to allow me to join your company/team and
+                                deliver great work for years to come.
+                                </p>
                             </template>
                         </Faq-item>
                         <Faq-item>
@@ -97,81 +107,49 @@
                             </template>
                             <template slot="answer">
                                 <p>
-                                It depends. First off, I’d be happy to relocate anywhere in the world for a training
-                                period of up to 3 months or so.
+                                If you require it and I've applied to you, then <strong>yes, absolutely.</strong>
                                 </p>
 
                                 <p>
-                                Now, if we’re talking long-term (i.e. onsite-only indefinitely), then we’d have to rule out
-                                SF and NYC (been there, done that, and while these areas have many nice things, they
-                                also have many cultural and systemic problems that aren’t worth the extra pay IMO, no
-                                offense to anyone). I’d love the chance to learn what it’s like to live in the Midwest
-                                or in Austin or Colorado or the Southwest. Really any midsize area I think would be nice.
-                                </p>
-
-                                <p>
-                                I’m a practical, down-to-earth guy (and a recovering consumerist) who prefers
-                                communities of happy people, healthy lifestyles, and real human connections over trendy
-                                rooftop bars and brunch options.
+                                I'm considering both
+                                onsite and remote opportunities. I don't know which one will pan out first, but my bags
+                                are packed just in case. I can start my first day with you just 1-2 weeks after
+                                accepting an offer.
                                 </p>
                             </template>
                         </Faq-item>
                         <Faq-item>
                             <template slot="question">
-                                How important is remote working to you? How much “freedom to work remotely” do you need?
+                                What is your target salary range?
                             </template>
                             <template slot="answer">
                                 <p>
-                                First, I will say that nothing is impossible. If we are a superbly great fit for each
-                                other, and I like the area, then I might end up living near you and working onsite for
-                                years.
+                                    It depends on the required <strong>location</strong>.
                                 </p>
 
                                 <p>
-                                That said, it is important to understand that “100% remote freedom” == “the freedom to
-                                live anywhere in the world and to hop around as desired,” and that because of that,
-                                it’s... kind of a big deal; the mother of all perks, once you give it a moment’s
-                                thought, really. No other benefit can come close to it, not even pay. And it’s not a
-                                wild fantasy anymore. Tens of thousands of people are already doing it.
+                                    For <strong>remote</strong> jobs, my target range is only $55k-85k (or $4.5k-7k monthly).
                                 </p>
 
                                 <p>
-                                So it’s nothing personal when I say that the ability for me to work fully-remotely
-                                (at least eventually) needs to at least be something you would consider (and it would
-                                greatly benefit you as well if you did). I’m even happy to work onsite at first and meet
-                                everyone and get up-to-speed before switching over. Alternatively, we could simply begin
-                                with a remote trial run of any length on a contract basis. I actually prefer this since
-                                we can both then try each other out relatively risk-free.
+                                    For onsite <strong>US jobs (outside of NY)</strong>, it's $75k-100k (depending on CoL).
+                                </p>
+
+                                <p>
+                                    For onsite jobs in <strong>NYC metro</strong>, it's $90k-110k.
+                                </p>
+
+                                <p>
+                                    For onsite jobs in <strong>Asia</strong>, it's $65k+ annually ($5.5k+ monthly).
                                 </p>
                             </template>
                         </Faq-item>
                         <Faq-item>
                             <template slot="question">
-                                Would you be ok with living and working anywhere <strong>within the US</strong> only?
+                                Would you be ok with living and working remotely <strong>within the US</strong>?
                             </template>
                             <template slot="answer">
-                                Sure! There are many areas of the US I’ve never been to and would love to try out. The
-                                beauty of having remote freedom still applies here since I’m never “stuck” in any place
-                                I end up not liking much. I can just swipe left and keep on truckin’. :)
-                            </template>
-                        </Faq-item>
-                        <Faq-item>
-                            <template slot="question">
-                                If you were outside of the US, could you still work 9am-6pm US time?
-                            </template>
-                            <template slot="answer">
-                                <p>If it’s actually important and you’re paying me enough, sure. I actually enjoy working
-                                graveyard hours to be perfectly honest, since it’s absolutely the best time to focus
-                                (since everyone else is asleep then).</p>
-
-                                <p>That said, typically only a few hours of daily overlap are necessary. It’s software work
-                                after all, so if it’s not just me and the code/app for 50% of my time or more, then
-                                that’s probably a process inefficiency red flag anyway.</p>
-
-                                <p>Now, if I sense that there’s a growing mutual benefit coming from close collaboration
-                                with one or more of my peers, then my hours will naturally gravitate towards more
-                                overlap. If I love my work and the way things are done, then we all produce better work
-                                and more efficiently too. That’s a win-win.</p>
+                                Absolutely! I'd be quite happy with the freedom to see more of my home country. :)
                             </template>
                         </Faq-item>
                         <Faq-item>
@@ -180,12 +158,10 @@
                             </template>
                             <template slot="answer">
                                 Without question: Neil deGrasse Tyson, DHH & Jason Fried, Kelly McGonigal, Dan Ariely,
-                                Mikey Bustos, Jeffrey Way, Taylor Otwell, the folks at X-Team, and all the
-                                inspirationally loving, strong, and supportive women in my family
-                                (my sister <a href="https://www.linkedin.com/in/nicole-l-wilson/" target="_blank">Nicole</a>,
-                                my <a href="http://songsbyjennifer.com/" target="_blank">mother</a>,
-                                and my cousin
-                                <a href="https://www.linkedin.com/in/marilee-habenicht/" target="_blank">Marilee</a>).
+                                Jay Shetty, Mikey Bustos, Jeffrey Way, Taylor Otwell, and the folks at X-Team &amp; all the other
+                                companies out there right now who are blazing the trail for a better/healthy working life
+                                for all tech employees (e.g. Lookback, Help Scout, Articulate, CleverTech, Knack, Knock,
+                                Oddball, and Basecamp).
                             </template>
                         </Faq-item>
                     </v-expansion-panel>
