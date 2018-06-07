@@ -132,7 +132,7 @@
                                 </p>
 
                                 <p>
-                                    For onsite <strong>US jobs (outside of NY)</strong>, it's $75k-100k (depending on CoL).
+                                    For onsite <strong>US jobs (outside of NYC)</strong>, it's $75k-100k (depending on CoL).
                                 </p>
 
                                 <p>
