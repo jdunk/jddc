@@ -12,7 +12,7 @@ module.exports = [
     },
     {
         quote: 'You’re good honestly and I believe you deserve 50usd per hr.',
-        by: 'Joe Palala, engineering colleague at iVolunteer',
+        by: '<a href="https://www.linkedin.com/in/josepalala/">Joe Palala</a>, engineering colleague at iVolunteer',
     },
     {
         quote: `You’re like super awesome; I look up to you [...] but that’s the truth, I’m inspired by how you
