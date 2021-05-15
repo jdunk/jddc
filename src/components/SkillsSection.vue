@@ -10,7 +10,7 @@
         <Section-header>About my top skills and interests...</Section-header>
         <Section-description>
             <p>
-                My top skills are <strong>PHP, Laravel, JavaScript,</strong> and <strong>Vue.js</strong>.
+                My top skills are <strong>PHP, JavaScript,</strong> and <strong>ReactJS</strong>.
             </p>
 
             <p>

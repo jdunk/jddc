@@ -11,8 +11,9 @@ module.exports = [
         by: 'Donovan Hughes',
     },
     {
-        quote: 'You’re good honestly and I believe you deserve 50usd per hr.',
-        by: 'Joe Palala, engineering colleague at iVolunteer',
+        quote: `
+            <a href="https://youtu.be/P315lfGH1RQ?t=15m38s" target="_blank" class="plain">Guys, he's <em>good!</em></a>`,
+        by: 'Mikey Bustos, famous YouTube musician/comedian',
     },
     {
         quote: `You’re like super awesome; I look up to you [...] but that’s the truth, I’m inspired by how you
@@ -25,10 +26,5 @@ module.exports = [
                         that you’ve got what it takes
                         [to be a successful entrepreneur].`,
         by: 'Yoon Choi, Investment Director at SAIC Capital',
-    },
-    {
-        quote: `
-            <a href="https://youtu.be/P315lfGH1RQ?t=15m38s" target="_blank" class="plain">Guys, he's <em>good!</em></a>`,
-        by: 'Mikey Bustos, famous YouTube musician/comedian',
     },
 ];

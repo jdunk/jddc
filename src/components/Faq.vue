@@ -120,32 +120,6 @@
                         </Faq-item>
                         <Faq-item>
                             <template slot="question">
-                                What is your target salary range?
-                            </template>
-                            <template slot="answer">
-                                <p>
-                                    It depends on the required <strong>location</strong>.
-                                </p>
-
-                                <p>
-                                    For <strong>remote</strong> jobs, my target range is only $55k-85k (or $4.5k-7k monthly).
-                                </p>
-
-                                <p>
-                                    For onsite <strong>US jobs (outside of NYC)</strong>, it's $90k-115k (depending on CoL).
-                                </p>
-
-                                <p>
-                                    For onsite jobs in <strong>NYC metro</strong>, it's $110k-130k.
-                                </p>
-
-                                <p>
-                                    For onsite jobs in <strong>Asia</strong>, it's $65k+ annually ($5.5k+ monthly).
-                                </p>
-                            </template>
-                        </Faq-item>
-                        <Faq-item>
-                            <template slot="question">
                                 Would you be ok with living and working remotely <strong>within the US</strong>?
                             </template>
                             <template slot="answer">

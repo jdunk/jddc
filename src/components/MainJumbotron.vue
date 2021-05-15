@@ -11,7 +11,6 @@
     <v-container
         :fluid="$vuetify.breakpoint.lgAndDown"
         :grid-list-xl="$vuetify.breakpoint.smAndUp"
-        :pt-5="$vuetify.breakpoint.smAndUp"
         :pt-4="$vuetify.breakpoint.xsOnly"
         px-0
         :mt-3="$vuetify.breakpoint.smAndUp"
