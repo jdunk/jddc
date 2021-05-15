@@ -43,8 +43,11 @@
                 >
                     Hi. I'm <strong>Jared Duncan</strong>.
                 </header>
-                <div class="subheading grey--text text--darken-1">
-                    I'm a Sr. Web Software Engineer with over a decade of experience
+                <div
+                    class="subheading grey--text text--darken-1"
+                    :class="$vuetify.breakpoint.mdAndUp ? 'pr-5 mr-5' : ''"
+                >
+                    I'm a full-stack Sr. Web Software Engineer with over a decade of experience
                     in San Francisco, New York, and beyond.
                 </div>
                 <div
@@ -73,7 +76,6 @@
 /* eslint-disable */
 
 const headshots = [
-    require('@/assets/img/1.png'),
     require('@/assets/img/2.png'),
     require('@/assets/img/3.png'),
 ];
@@ -84,7 +86,7 @@ export default {
     name: 'Main-jumbotron',
     data: () => ({
         headshots,
-        currHeadshotImgIndex: 2,
+        currHeadshotImgIndex: 1,
     }),
     mounted() {
         // Start Headshot src switching interval
