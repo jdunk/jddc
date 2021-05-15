@@ -1,6 +1,6 @@
 <template>
     <v-container fluid class="pattern-bg" id="portfolio" py-5 px-0 elevation-3 style="z-index: 17">
-        <Section-header>Here’s some stuff I made recently.</Section-header>
+        <Section-header>Here’s some of my featured work.</Section-header>
         <v-container
             :fluid="$vuetify.breakpoint.lgAndDown"
             grid-list-xl

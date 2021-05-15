@@ -44,8 +44,8 @@
                     Hi. I'm <strong>Jared Duncan</strong>.
                 </header>
                 <div class="subheading grey--text text--darken-1">
-                    I'm a full-stack PHP & JavaScript web app engineer with over a decade of experience
-                    in San Francisco and New York.
+                    I'm a Sr. Web Software Engineer with over a decade of experience
+                    in San Francisco, New York, and beyond.
                 </div>
                 <div
                     :class="$vuetify.breakpoint.smAndDown ? 'mt-4 pt-2' : 'mt-5'"
@@ -53,7 +53,7 @@
                     <v-btn large dark color="light-blue darken-2" class="mx-0"
                        @click="$vuetify.goTo('#portfolio', goToOptions)"
                     >
-                        Check out my recent work
+                        Check out my Portfolio
                     </v-btn>
                     <v-btn large dark color="secondary" ml-5
                        href="https://jaredduncan.com/resume"
@@ -74,7 +74,7 @@
 
 const headshots = [
     require('@/assets/img/1.png'),
-    require('@/assets/img/2.jpeg'),
+    require('@/assets/img/2.png'),
     require('@/assets/img/3.png'),
 ];
 
