@@ -2,7 +2,7 @@
     <v-dialog
         v-model="showDialog"
         fullscreen
-        lazy
+        eager
         @keydown.esc="showDialog = false"
         @keydown.left="prevImage($event)"
         @keydown.right="nextImage($event)"

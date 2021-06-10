@@ -1,7 +1,6 @@
 let ghUrl = 'https://github.com/jdunk/jddc',
     responsiveLoaderUrl = 'https://github.com/herrstucki/responsive-loader',
     responsiveLoaderLinked = `<a href="${responsiveLoaderUrl}" target="_blank">responsive-loader</a>`,
-    mediumArticleUrl = 'https://medium.com/@jaredduncan/jaredduncan-com-and-the-tools-i-used-to-build-it-adb8cfd01daf',
     ghLink = {
         text: 'View GitHub Repo',
         href: ghUrl,
@@ -22,7 +21,7 @@ module.exports = {
     title: 'jaredduncan.com',
     description: "That's right, this very site you're browsing right now I hand-coded with Vue, Vuetify, and Webpack.",
     links: {
-        github: 'https://github.com/jdunk/jddc',
+        github: ghUrl,
     },
     imageData: {
         '01-main-page': {
@@ -129,8 +128,7 @@ module.exports = {
             caption: `
                 <div class="p">
                     It was no small task, but I manually created small (and often mid-size) variations of every single
-                    image here, in every gallery. (Except only for the Medium article screenshot&mdash;coming up next&mdash;which
-                    happened to look fine at all sizes.)
+                    image here, in every gallery.
                 </div>
                 <div class="p">
                     Only the screencast (mp4 file) which appears at Slide #2 in the "Laracasts Downloader" gallery 
@@ -138,34 +136,6 @@ module.exports = {
                 </div>
             `,
             links: mainLinks,
-        },
-        /* // Can wait
-        '09-when-scaling-worked': { // show 2 monitors (vertically-stacked) with each variation and "vs." in the middle?
-            caption: `
-                <div class="p">
-                    There was only 1 image that actually looked good at every screen size and actually could be simply
-                    scaled up/down. It was image #1 in the "Cryptotrading Bot" gallery.
-                </div>
-                <div class="p">
-                    (I'd created an XL variation, but scrapped it when I could no longer deny that the smaller one
-                    definitely looked better despite its narrowness on an XL screen.)
-                </div>
-            `,
-            links: mainLinks,
-        },
-        */
-        '10-medium-article': {
-            caption: `
-                Last but not least, I published an article on medium.com to tell
-                <a href="${mediumArticleUrl}" target="_blank">the story behind this site</a> and how I ended up choosing the
-                tools I did to build it. 
-            `,
-            links: [
-                {
-                    text: 'View the Backstory',
-                    href: mediumArticleUrl,
-                },
-            ],
         },
     },
 };

@@ -12,7 +12,7 @@ let ghLink = {
 
 module.exports = {
     title: 'Cryptotrading Bot',
-    description: 'A Laravel app I wrote to automate day-trading cryptocurrency on Binance.',
+    description: 'A Laravel app I wrote to automate cryptocurrency trading on Binance.',
     links: {
         github: 'https://github.com/jdunk/trading-bot',
     },
@@ -20,14 +20,14 @@ module.exports = {
         '01-collage': {
             caption: `
                 <div class="p">
-                    The Crypto-Boom of late 2017 got my attention... and once I learned that day-trading cryptocurrency (on
+                    The Crypto-Boom of late 2017 got my attention... and once I learned that trading cryptocurrency (on
                     exchange sites like <a href="https://binance.com" target="_blank">binance.com</a>) was actually accessible
                     to regular people, I decided to write some software to automate trading and to visualize
                     & fine-tune algorithmic variables.
                 </div>
                 <div class="p">
                     (I had never done any financial trading before, so I first taught myself everything I needed to know
-                    about day-trading via a deep 2-week binge, devouring investopedia.com and various in-depth articles.)
+                    about trading via a deep 2-week binge, devouring investopedia.com and various in-depth articles.)
                 </div>
             `,
             links: [
