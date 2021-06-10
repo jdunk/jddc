@@ -42,7 +42,7 @@ module.exports = {
             caption: `
                 <div class="p">
                   Advancing forward (by swiping left or pressing <code>&rarr;</code>) will reveal the pronoun first,
-                  and then the correct/matching verb conjugation.',
+                  and then the correct/matching verb conjugation.
                 </div>
             `,
             links: mainLinks,
