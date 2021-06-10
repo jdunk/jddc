@@ -36,6 +36,15 @@
             >
                 View on GitHub
             </v-btn>
+            <v-btn
+                v-if="links && links.demo"
+                :href="links.demo"
+                target="_blank"
+                flat
+                class="blue--text text--darken-1"
+            >
+                Live Demo
+            </v-btn>
         </v-card-actions>
     </v-card>
 </template>
