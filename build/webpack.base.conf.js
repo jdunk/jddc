@@ -72,6 +72,7 @@ module.exports = {
         ],
         loader: 'responsive-loader',
         options: {
+          adapter: require('responsive-loader/sharp'),
           limit: 10000,
           name: utils.assetsPath('img/[name].[hash:7]-[width].[ext]'),
           sizes: [400, 800, 1200, 1600],
