@@ -47,7 +47,7 @@
                     class="subheading grey--text text--darken-1"
                     :class="$vuetify.breakpoint.mdAndUp ? 'pr-5 mr-5' : ''"
                 >
-                    I'm a full-stack Sr. Web Software Engineer with over a decade of experience
+                    I'm a full-stack Sr. Web Software Engineer with > 20 years of experience
                     in San Francisco, New York, and beyond.
                 </div>
                 <div
@@ -76,7 +76,7 @@
 /* eslint-disable */
 
 const headshots = [
-    require('@/assets/img/2.png'),
+    require('@/assets/img/4.png'),
     require('@/assets/img/3.png'),
 ];
 
